@@ -1,0 +1,508 @@
+<!doctype html>
+<html lang="nl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anton Van Kimmenade — Curriculum Vitae</title>
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet" />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
+              mono: ["IBM Plex Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+            },
+            colors: {
+              brand: "#1e3a5f",
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      @media print {
+        @page { size: A4; margin: 0; }
+        html, body { margin: 0 !important; padding: 0 !important; background: #fff !important; }
+        .no-print { display: none !important; }
+      }
+
+      body {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      .page {
+        width: 210mm;
+        height: 297mm;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: #fff;
+        color: #000;
+        position: relative;
+        margin: 0 auto;
+      }
+
+      .section-title {
+        border: 1px solid #000;
+      }
+
+      .avoid-break {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Custom scrollbar for preview */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: #f1f1f1; }
+      ::-webkit-scrollbar-thumb { background: #1e3a5f; border-radius: 4px; }
+    </style>
+  </head>
+
+  <body class="font-sans bg-neutral-200 print:bg-white text-[10pt]">
+    
+    <!-- Controls (Hidden on Print) -->
+    <div class="no-print fixed top-4 right-4 z-50 flex flex-col gap-2">
+      <div class="bg-white p-2 rounded shadow-lg flex gap-2">
+        <button onclick="setLanguage('nl')" id="btn-nl" class="px-3 py-1 rounded bg-brand text-white font-bold">NL</button>
+        <button onclick="setLanguage('en')" id="btn-en" class="px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300">EN</button>
+      </div>
+      <div class="bg-white p-2 rounded shadow-lg flex flex-col gap-2">
+        <input type="text" id="photo-url" placeholder="Paste Photo URL..." class="text-[9pt] p-1 border rounded w-40">
+        <button onclick="updatePhoto()" class="bg-neutral-800 text-white px-2 py-1 rounded text-[9pt] font-bold">Update Photo</button>
+      </div>
+      <button onclick="window.print()" class="bg-brand text-white px-4 py-2 rounded shadow-lg font-bold hover:bg-opacity-90">
+        🖨️ Print CV
+      </button>
+    </div>
+
+    <main class="min-h-screen flex items-start justify-center py-8 print:py-0">
+      <div id="cv-content" class="page shadow-2xl print:shadow-none">
+        <!-- Content will be rendered here -->
+        <div class="h-full flex items-center justify-center">
+          <p class="text-xl animate-pulse">Loading CV data...</p>
+        </div>
+      </div>
+    </main>
+
+    <!-- Embedded Data (Auto-synced from cv.json) -->
+    <script id="cv-data" type="application/json">
+{
+  "basics": {
+    "name": "Anton Van Kimmenade",
+    "label": {
+      "en": "Full-Stack Developer & IT Specialist",
+      "nl": "Full-Stack Ontwikkelaar & IT Specialist"
+    },
+    "email": "toonvankimmenade@gmail.com",
+    "phone": "+32 489 69 32 34",
+    "url": "https://linkedin.com/in/toonvank",
+    "summary": {
+      "en": "Motivated full-stack developer with a broad range of internship experiences and a full technical stack (backend, frontend, CI/CD, hardware). Combines technical creativity with Agile/Scrum teamwork experience, focusing on quality through testing and SOLID principles. Proficient in .NET, PHP, Flutter, Java, and Python.",
+      "nl": "Gedreven full-stack ontwikkelaar met een breed scala aan stage-ervaringen en een volledige technische stack (backend, frontend, CI/CD, hardware). Combineert technische creativiteit met Agile/Scrum teamworkervaring, met een focus op kwaliteit via testing en SOLID-principes. Vaardig in .NET, PHP, Flutter, Java en Python."
+    },
+    "location": {
+      "address": "Gouden Regenstraat 9",
+      "postalCode": "3630",
+      "city": "Maasmechelen",
+      "countryCode": "BE"
+    },
+    "birthDate": "2000-12-04"
+  },
+  "experience": [
+    {
+      "company": "Conclusion Intelligence",
+      "position": {
+        "en": "Full Stack Developer (Internship)",
+        "nl": "Full Stack Ontwikkelaar (Stage)"
+      },
+      "startDate": "2025-02",
+      "endDate": "2025-06",
+      "description": {
+        "en": "Developed the EV SmartCharge app using .NET Aspire and Flutter, implementing priority reservation logic and CI/CD workflows in Azure.",
+        "nl": "Ontwikkeling van de EV SmartCharge-app met .NET Aspire en Flutter, inclusief implementatie van prioritaire reserveringslogica en CI/CD-workflows in Azure."
+      }
+    },
+    {
+      "company": "Mediaworqs - PrintSimple",
+      "position": {
+        "en": "Full Stack Developer (Internship)",
+        "nl": "Full Stack Ontwikkelaar (Stage)"
+      },
+      "startDate": "2022-09",
+      "endDate": "2023-06",
+      "description": {
+        "en": "Development of PHP CMS solutions (Laravel, Drupal) for clients, including the Libera platform.",
+        "nl": "Ontwikkeling van PHP CMS-oplossingen (Laravel, Drupal) voor klanten, waaronder het Libera-platform."
+      }
+    },
+    {
+      "company": "Mecam Group",
+      "position": {
+        "en": "IT Support & Development Specialist",
+        "nl": "IT-ondersteuning & Ontwikkelingsspecialist"
+      },
+      "startDate": "2019-02",
+      "endDate": "2019-12",
+      "description": {
+        "en": "Development and support of C#/ASP.NET Core applications for HR and product management systems, including SQL database management for optimal performance and security.",
+        "nl": "Ontwikkeling en ondersteuning van C#/ASP.NET Core-applicaties voor HR- en productbeheersystemen, inclusief SQL-databasebeheer voor optimale prestaties en beveiliging."
+      }
+    },
+    {
+      "company": "OCMW Maasmechelen",
+      "position": "HR Department (Internship)",
+      "startDate": "2018-02",
+      "endDate": "2018-02",
+      "description": {
+        "en": "Short-term internship within the Human Resources department.",
+        "nl": "Kortstondige stage binnen de HR-afdeling."
+      }
+    },
+    {
+      "company": "Primary School St-Jan Maasmechelen",
+      "position": {
+        "en": "IT Maintenance & Support",
+        "nl": "IT-onderhoud & Ondersteuning"
+      },
+      "startDate": "2017-02",
+      "endDate": "2017-02",
+      "description": {
+        "en": "Provided IT support including hardware maintenance and created time-saving Excel automations using VBA.",
+        "nl": "Verleende IT-ondersteuning inclusief hardwareonderhoud en ontwikkelde tijdbesparende Excel-automatiseringen met behulp van VBA."
+      }
+    }
+  ],
+  "education": [
+    {
+      "institution": "Hogeschool PXL",
+      "area": "Bachelor of Applied Computer Science",
+      "studyType": "Professional Bachelor",
+      "startDate": "2021",
+      "endDate": "2025"
+    },
+    {
+      "institution": "Hogeschool PXL",
+      "area": "Associate Degree in Programming",
+      "studyType": "Associate Degree",
+      "startDate": "2017",
+      "endDate": "2020"
+    },
+    {
+      "institution": "UCLL Hasselt",
+      "area": {
+        "en": "Educational Psychology",
+        "nl": "Orthopedagogie"
+      },
+      "studyType": "Bachelor",
+      "startDate": "2020",
+      "endDate": "2021"
+    },
+    {
+      "institution": "Provinciale Handelsschool Hasselt",
+      "area": "IT Management & Programming",
+      "studyType": "Secondary Education",
+      "startDate": "2017",
+      "endDate": "2020"
+    },
+    {
+      "institution": "Kunstacademie Maasmechelen",
+      "area": {
+        "en": "Graphic Design",
+        "nl": "Grafische Ontwikkeling"
+      },
+      "startDate": "2017",
+      "endDate": "2020"
+    }
+  ],
+  "projects": [
+    {
+      "name": "EV SmartCharge",
+      "description": {
+        "en": "Scalable electric vehicle charging optimization (.NET + Flutter).",
+        "nl": "Schaalbare optimalisatie voor het laden van elektrische voertuigen (.NET + Flutter)."
+      }
+    },
+    {
+      "name": "Project Tracking Platform",
+      "description": {
+        "en": "Project management tracking system built with Laravel.",
+        "nl": "Volgsysteem voor projectbeheer gebouwd met Laravel."
+      }
+    },
+    {
+      "name": "Parking Attendant Helper App",
+      "description": {
+        "en": "Coordination and communication app for parking attendants (Appwrite + Flutter).",
+        "nl": "Coördinatie- en communicatie-app voor parkeerwachters (Appwrite + Flutter)."
+      }
+    },
+    {
+      "name": "SEPApp",
+      "description": {
+        "en": "Streamlined group payments system (Appwrite + ASP.NET).",
+        "nl": "Gestroomlijnd systeem voor groepsbetalingen (Appwrite + ASP.NET)."
+      }
+    }
+  ],
+  "skills": {
+    "languages": [
+      { "language": "Dutch", "fluency": "Native" },
+      { "language": "English", "fluency": "B2 (Upper Intermediate)" },
+      { "language": "Greek", "fluency": "B1 (Intermediate)" },
+      { "language": "French", "fluency": "A2 (Elementary)" },
+      { "language": "German", "fluency": "A1 (Beginner)" }
+    ],
+    "programming_languages": ["C#", "PHP", "Dart", "Java", "Python", "SQL", "JavaScript", "HTML/CSS", "VBA"],
+    "frameworks": [".NET Core", "ASP.NET Core", "Laravel", "Drupal", "Flutter", ".NET Aspire", "Appwrite"],
+    "tools": ["Azure", "AWS", "Docker", "Linux", "CI/CD", "Git", "Photoshop", "Illustrator", "Premiere"],
+    "methodologies": ["Agile", "Scrum", "SOLID", "Testing"]
+  },
+  "references": [
+    { "name": "Niels Munters", "company": "Conclusion Intelligence" },
+    { "name": "Zoe Viola", "company": "Conclusion Intelligence" }
+  ]
+}
+    </script>
+
+    <!-- Rendering Logic -->
+    <script>
+      let currentLang = 'nl';
+      let data = {};
+
+      function getText(obj) {
+        if (!obj) return '';
+        if (typeof obj === 'string') return obj;
+        return obj[currentLang] || obj['en'] || obj['nl'] || '';
+      }
+
+      function formatDates(start, end) {
+        const startStr = start ? start.toUpperCase() : '';
+        let endStr = end ? end.toUpperCase() : (currentLang === 'nl' ? 'HEDEN' : 'PRESENT');
+        if (startStr === endStr) return startStr;
+        return `${startStr} — ${endStr}`;
+      }
+
+      function setLanguage(lang) {
+        currentLang = lang;
+        render();
+        
+        // Update buttons
+        document.getElementById('btn-nl').className = lang === 'nl' ? 'px-3 py-1 rounded bg-brand text-white font-bold' : 'px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300';
+        document.getElementById('btn-en').className = lang === 'en' ? 'px-3 py-1 rounded bg-brand text-white font-bold' : 'px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300';
+      }
+
+      function updatePhoto() {
+        const url = document.getElementById('photo-url').value;
+        if (url) {
+          localStorage.setItem('cv-photo-url', url);
+          render();
+        }
+      }
+
+      function render() {
+        const container = document.getElementById('cv-content');
+        const b = data.basics;
+        const customPhoto = localStorage.getItem('cv-photo-url');
+        const handle = b.url.split('/').filter(Boolean).pop();
+        
+        // Priority: Custom URL > Local Upload > GitHub > LinkedIn > Initials
+        const photoSrc = customPhoto || 'Downloads/picture.jpg';
+
+        container.innerHTML = `
+          <div class="h-full grid grid-cols-10 gap-0">
+            <!-- SIDEBAR (30%) -->
+            <aside class="col-span-3 bg-brand text-white flex flex-col h-full overflow-hidden">
+              <div class="p-[8mm] flex flex-col gap-[8mm] h-full">
+                
+                <!-- Profile Picture -->
+                <div class="avoid-break flex justify-center">
+                  <div class="w-32 h-32 rounded-full border-4 border-white/20 overflow-hidden bg-white/10 flex items-center justify-center text-3xl font-bold">
+                    <img id="pfp-img" src="${photoSrc}" 
+                         alt="${b.name}" 
+                         class="w-full h-full object-cover"
+                         onerror="if(this.src.includes('Downloads/picture.jpg')) { this.src='https://github.com/${handle}.png' } else if(this.src.includes('github.com')) { this.src='https://unavatar.io/linkedin/${handle}' } else { this.parentElement.innerHTML='${b.name.split(' ').map(n => n[0]).join('')}' }">
+                  </div>
+                </div>
+
+                <!-- Contact -->
+                <section class="avoid-break">
+                  <h2 class="text-[9pt] font-bold tracking-[0.2em] uppercase mb-[4mm] border-b border-white/20 pb-1">
+                    Contact
+                  </h2>
+                  <div class="space-y-[3mm]">
+                    <div>
+                      <div class="text-[7.5pt] uppercase tracking-wider opacity-60 font-mono">Email</div>
+                      <div class="text-[9pt] break-words">${b.email}</div>
+                    </div>
+                    <div>
+                      <div class="text-[7.5pt] uppercase tracking-wider opacity-60 font-mono">${currentLang === 'nl' ? 'Telefoon' : 'Phone'}</div>
+                      <div class="text-[9pt]">${b.phone}</div>
+                    </div>
+                    <div>
+                      <div class="text-[7.5pt] uppercase tracking-wider opacity-60 font-mono">${currentLang === 'nl' ? 'Locatie' : 'Location'}</div>
+                      <div class="text-[9pt]">${b.location.city}, ${b.location.countryCode === 'BE' ? (currentLang === 'nl' ? 'België' : 'Belgium') : b.location.countryCode}</div>
+                    </div>
+                    <div>
+                      <div class="text-[7.5pt] uppercase tracking-wider opacity-60 font-mono">LinkedIn</div>
+                      <div class="text-[9pt] truncate">${b.url.replace('https://', '')}</div>
+                    </div>
+                  </div>
+                </section>
+
+                <!-- Education -->
+                <section class="avoid-break">
+                  <h2 class="text-[9pt] font-bold tracking-[0.2em] uppercase mb-[4mm] border-b border-white/20 pb-1">
+                    ${currentLang === 'nl' ? 'Opleiding' : 'Education'}
+                  </h2>
+                  <div class="space-y-[4mm]">
+                    ${data.education.map(edu => `
+                      <div>
+                        <div class="text-[8.5pt] font-bold leading-tight">${edu.institution}</div>
+                        <div class="text-[8pt] opacity-90 mt-[0.5mm]">${getText(edu.area)}</div>
+                        <div class="text-[7.5pt] font-mono opacity-60 mt-[0.5mm]">${edu.startDate} — ${edu.endDate}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </section>
+
+                <!-- Skills -->
+                <section class="avoid-break">
+                  <h2 class="text-[9pt] font-bold tracking-[0.2em] uppercase mb-[4mm] border-b border-white/20 pb-1">
+                    Skills
+                  </h2>
+                  <div class="space-y-[4mm]">
+                    <div>
+                      <div class="text-[7.5pt] uppercase tracking-wider opacity-60 font-mono mb-1">Tech Stack</div>
+                      <div class="flex flex-wrap gap-1">
+                        ${data.skills.programming_languages.slice(0, 6).map(s => `<span class="bg-white/10 px-1.5 py-0.5 rounded text-[7.5pt]">${s}</span>`).join('')}
+                        ${data.skills.frameworks.slice(0, 4).map(s => `<span class="bg-white/10 px-1.5 py-0.5 rounded text-[7.5pt]">${s}</span>`).join('')}
+                      </div>
+                    </div>
+                    <div>
+                      <div class="text-[7.5pt] uppercase tracking-wider opacity-60 font-mono mb-1">${currentLang === 'nl' ? 'Talen' : 'Languages'}</div>
+                      <div class="space-y-1">
+                        ${data.skills.languages.map(l => `
+                          <div class="flex justify-between text-[8pt]">
+                            <span>${l.language}</span>
+                            <span class="opacity-60 text-[7pt]">${l.fluency.split(' ')[0]}</span>
+                          </div>
+                        `).join('')}
+                      </div>
+                    </div>
+                  </div>
+                </section>
+              </div>
+            </aside>
+
+            <!-- MAIN CONTENT (70%) -->
+            <section class="col-span-7 p-[10mm] flex flex-col min-w-0">
+              <!-- Header -->
+              <header class="avoid-break mb-[6mm]">
+                <h1 class="text-[24pt] font-extrabold leading-tight tracking-tight text-brand uppercase">
+                  ${b.name}
+                </h1>
+                <div class="mt-[1mm] text-[11pt] tracking-[0.2em] uppercase text-neutral-500 font-medium">
+                  ${getText(b.label)}
+                </div>
+                <div class="mt-[4mm] border-t-2 border-brand w-16"></div>
+              </header>
+
+              <!-- Profile -->
+              <section class="avoid-break mb-[6mm]">
+                <div class="section-title px-3 py-1 bg-neutral-50 border-none mb-[3mm]">
+                  <h2 class="text-[10pt] font-bold tracking-[0.15em] uppercase text-brand">
+                    ${currentLang === 'nl' ? 'Profiel' : 'Profile'}
+                  </h2>
+                </div>
+                <p class="text-[9.5pt] leading-relaxed text-neutral-800">
+                  ${getText(b.summary)}
+                </p>
+              </section>
+
+              <!-- Experience -->
+              <section class="mb-[6mm]">
+                <div class="section-title px-3 py-1 bg-neutral-50 border-none mb-[3mm]">
+                  <h2 class="text-[10pt] font-bold tracking-[0.15em] uppercase text-brand">
+                    ${currentLang === 'nl' ? 'Ervaring' : 'Experience'}
+                  </h2>
+                </div>
+                <div class="space-y-[5mm]">
+                  ${data.experience.map(exp => `
+                    <article class="avoid-break">
+                      <div class="flex items-start justify-between gap-4">
+                        <div class="min-w-0">
+                          <h3 class="text-[10.5pt] font-bold leading-tight text-brand">${exp.company}</h3>
+                          <div class="text-[9.5pt] font-medium text-neutral-700 mt-[0.5mm] italic">${getText(exp.position)}</div>
+                        </div>
+                        <div class="font-mono text-[8.5pt] font-semibold text-neutral-500 whitespace-nowrap pt-[0.5mm]">
+                          ${formatDates(exp.startDate, exp.endDate)}
+                        </div>
+                      </div>
+                      <p class="mt-[1.5mm] text-[9pt] leading-snug text-neutral-700 border-l-2 border-neutral-100 pl-3">
+                        ${getText(exp.description)}
+                      </p>
+                    </article>
+                  `).join('')}
+                </div>
+              </section>
+
+              <!-- Projects -->
+              <section class="mb-[6mm]">
+                <div class="section-title px-3 py-1 bg-neutral-50 border-none mb-[3mm]">
+                  <h2 class="text-[10pt] font-bold tracking-[0.15em] uppercase text-brand">
+                    ${currentLang === 'nl' ? 'Projecten' : 'Projects'}
+                  </h2>
+                </div>
+                <div class="grid grid-cols-2 gap-x-[6mm] gap-y-[3mm]">
+                  ${data.projects.map(proj => `
+                    <div class="avoid-break">
+                      <h3 class="text-[9.5pt] font-bold text-brand">${proj.name}</h3>
+                      <p class="text-[8.5pt] leading-tight text-neutral-600 mt-[0.5mm]">
+                        ${getText(proj.description)}
+                      </p>
+                    </div>
+                  `).join('')}
+                </div>
+              </section>
+
+              <!-- References -->
+              <section class="avoid-break">
+                <div class="section-title px-3 py-1 bg-neutral-50 border-none mb-[3mm]">
+                  <h2 class="text-[10pt] font-bold tracking-[0.15em] uppercase text-brand">
+                    ${currentLang === 'nl' ? 'Referenties' : 'References'}
+                  </h2>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                  ${data.references.map(ref => `
+                    <div class="text-[9pt]">
+                      <div class="font-bold text-brand">${ref.name}</div>
+                      <div class="text-neutral-600">${ref.company}</div>
+                      <div class="text-[8pt] italic opacity-60">${currentLang === 'nl' ? 'Contactgegevens op aanvraag' : 'Contact details upon request'}</div>
+                    </div>
+                  `).join('')}
+                </div>
+              </section>
+
+              <div class="mt-auto"></div>
+            </section>
+          </div>
+        `;
+      }
+
+      // Initial load
+      document.addEventListener('DOMContentLoaded', () => {
+        data = JSON.parse(document.getElementById('cv-data').textContent);
+        render();
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Anton Van Kimmenade — Curriculum Vitae</title>
+
+    <!-- Fonts (required) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=Inter:wght@400;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              sans: ["Inter", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
+              mono: ["IBM Plex Mono", "ui-monospace", "SFMono-Regular", "Menlo", "Monaco", "Consolas", "monospace"],
+            },
+          },
+        },
+      };
+    </script>
+
+    <style>
+      @media print {
+        @page {
+          size: A4;
+          margin: 0;
+        }
+        html,
+        body {
+          margin: 0 !important;
+          padding: 0 !important;
+          background: #fff !important;
+        }
+      }
+
+      /* Strict A4 page box */
+      .page {
+        width: 210mm;
+        height: 297mm;
+        padding: 15mm;
+        box-sizing: border-box;
+        overflow: hidden;
+        background: #fff;
+        color: #000;
+      }
+
+      /* Keep dense layout stable in print */
+      .avoid-break {
+        break-inside: avoid;
+        page-break-inside: avoid;
+      }
+
+      /* Section header: 1px solid black border (required) */
+      .section-title {
+        border: 1px solid #000;
+      }
+
+      /* Print clarity */
+      * {
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+    </style>
+  </head>
+
+  <body class="font-sans bg-neutral-200 print:bg-white">
+    <main class="min-h-screen flex items-start justify-center py-6 print:py-0">
+      <div class="page">
+        <!-- Header -->
+        <header class="avoid-break">
+          <div class="flex items-baseline justify-between gap-6">
+            <div class="min-w-0">
+              <h1 class="text-[18pt] font-extrabold leading-[1.05] tracking-tight">
+                Anton Van Kimmenade
+              </h1>
+              <p class="text-[11pt] font-semibold leading-tight">
+                Software Developer
+              </p>
+            </div>
+
+            <div class="text-right text-[9.5pt] leading-tight font-mono">
+              <div>toonvankimmenade@gmail.com</div>
+              <div>+32 489 69 32 34</div>
+              <div>Maasmechelen, België</div>
+              <div>www.toonvank.com</div>
+            </div>
+          </div>
+
+          <div class="mt-[4mm] text-[10pt] leading-snug">
+            Afgestudeerd Full-Stack Developer, volhardend, nieuwsgierig en gedreven om te leren en te groeien. Geniet van het aanpakken van uitdagingen, het verkennen van ideeën en het combineren van creativiteit met probleemoplossing.
+          </div>
+
+          <div class="mt-[4mm] border-t border-black"></div>
+        </header>
+
+        <!-- 2-column layout (70/30) -->
+        <section class="mt-[4mm] grid grid-cols-10 gap-[5mm]">
+          <!-- Left (70%) -->
+          <div class="col-span-7 min-w-0">
+            <!-- EXPERIENCE -->
+            <section class="avoid-break">
+              <div class="section-title px-2 py-1">
+                <h2 class="text-[10pt] font-bold tracking-[0.14em] uppercase">
+                  Experience
+                </h2>
+              </div>
+
+              <div class="mt-[2.5mm] space-y-[3.5mm]">
+                <!-- Conclusion Intelligence -->
+                <article class="avoid-break">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <div class="text-[10.5pt] font-bold leading-tight">
+                        Conclusion Intelligence
+                      </div>
+                      <div class="text-[10pt] leading-tight">
+                        Full Stack Ontwikkelaar (Stage)
+                      </div>
+                    </div>
+                    <div class="font-mono text-[9.5pt] leading-tight whitespace-nowrap">
+                      2025 — HEDEN
+                    </div>
+                  </div>
+                  <ul class="mt-[1.5mm] list-disc pl-4 text-[9.8pt] leading-snug">
+                    <li>Ontwikkelde EV SmartCharge app met .NET Aspire, Redis en Flutter.</li>
+                    <li>Implementeerde prioriteitsreserveringen en beheerfuncties.</li>
+                    <li>Optimaliseerde workflows via CI/CD in Azure en Docker.</li>
+                  </ul>
+                </article>
+
+                <!-- Mediaworqs - PrintSimple -->
+                <article class="avoid-break">
+                  <div class="flex items-start justify-between gap-3">
+                    <div class="min-w-0">
+                      <div class="text-[10.5pt] font-bold leading-tight">
+                        Mediaworqs - PrintSimple
+                      </div>
+                      <div class="text-[10pt] leading-tight">
+                        Full Stack Ontwikkelaar (Stage)
+                      </div>
+                    </div>
+                    <div class="font-mono text-[9.5pt] leading-tight whitespace-nowrap">
+                      2022 — 2023
+                    </div>
+                  </div>
+                  <ul class="mt-[1.5mm] list-disc pl-4 text-[9.8pt] leading-snug">
+                    <li>Development of PHP CMS solutions (Laravel, Drupal).</li>
+                    <li>Maintenance for the Libera platform.</li>
+                  </ul>
+                </article>
+              </div>
+            </section>
+
+            <!-- EDUCATION -->
+            <section class="avoid-break mt-[5mm]">
+              <div class="section-title px-2 py-1">
+                <h2 class="text-[10pt] font-bold tracking-[0.14em] uppercase">
+                  Education
+                </h2>
+              </div>
+
+              <div class="mt-[2.5mm] space-y-[2.5mm]">
+                <div class="avoid-break flex items-start justify-between gap-3">
+                  <div class="min-w-0">
+                    <div class="text-[10.5pt] font-bold leading-tight">Hogeschool PXL</div>
+                    <div class="text-[10pt] leading-tight">Bachelor of Applied Computer Science</div>
+                  </div>
+                  <div class="font-mono text-[9.5pt] leading-tight whitespace-nowrap">
+                    2021 — 2025
+                  </div>
+                </div>
+
+                <div class="avoid-break flex items-start justify-between gap-3">
+                  <div class="min-w-0">
+                    <div class="text-[10.5pt] font-bold leading-tight">Handelsschool Hasselt</div>
+                    <div class="text-[10pt] leading-tight">IT Management</div>
+                  </div>
+                  <div class="font-mono text-[9.5pt] leading-tight whitespace-nowrap">
+                    2017 — 2020
+                  </div>
+                </div>
+              </div>
+            </section>
+          </div>
+
+          <!-- Right (30%) -->
+          <aside class="col-span-3 min-w-0">
+            <!-- SKILLS -->
+            <section class="avoid-break">
+              <div class="section-title px-2 py-1">
+                <h2 class="text-[10pt] font-bold tracking-[0.14em] uppercase">
+                  Skills
+                </h2>
+              </div>
+
+              <ul class="mt-[2.5mm] space-y-[2mm] text-[9.8pt] leading-snug">
+                <li>Languages: .NET, PHP, Java, Dart, Python, SQL</li>
+                <li>Tools: Azure, AWS, Docker, CI/CD</li>
+                <li>Frameworks: Flutter, Laravel, ASP.NET Core</li>
+              </ul>
+            </section>
+
+            <!-- CONTACT (values only; no rephrasing) -->
+            <section class="avoid-break mt-[5mm]">
+              <div class="section-title px-2 py-1">
+                <h2 class="text-[10pt] font-bold tracking-[0.14em] uppercase">
+                  Contact
+                </h2>
+              </div>
+
+              <div class="mt-[2.5mm] text-[9.8pt] leading-snug">
+                <div class="font-mono text-[9.5pt] leading-tight">
+                  <a class="underline" href="mailto:toonvankimmenade@gmail.com">toonvankimmenade@gmail.com</a>
+                </div>
+                <div class="font-mono text-[9.5pt] leading-tight mt-[1.5mm]">
+                  <a class="underline" href="tel:+32489693234">+32 489 69 32 34</a>
+                </div>
+                <div class="font-mono text-[9.5pt] leading-tight mt-[1.5mm]">
+                  Maasmechelen, België
+                </div>
+                <div class="font-mono text-[9.5pt] leading-tight mt-[1.5mm]">
+                  <a class="underline" href="https://www.toonvank.com">www.toonvank.com</a>
+                </div>
+              </div>
+            </section>
+          </aside>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
