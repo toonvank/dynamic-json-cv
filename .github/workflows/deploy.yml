@@ -1,0 +1,32 @@
+name: Deploy CV
+
+on:
+  push:
+    branches: ["main"]
+
+concurrency:
+  group: deploy-cv
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy to server directory
+        env:
+          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
+        run: |
+          set -euo pipefail
+          if [ -z "${DEPLOY_DIR:-}" ]; then
+            echo "Missing Actions variable DEPLOY_DIR (Settings → Secrets and variables → Actions → Variables)"
+            exit 1
+          fi
+          mkdir -p "$DEPLOY_DIR"
+          rsync -a --delete \
+            --exclude '.git/' \
+            --exclude '.github/' \
+            --exclude 'node_modules/' \
+            ./ "$DEPLOY_DIR/"
