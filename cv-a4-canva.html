@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anton Van Kimmenade — Curriculum Vitae</title>
+    <title>Toon van Kimmenade — Curriculum Vitae</title>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -97,7 +97,7 @@
     <script id="cv-data" type="application/json">
 {
   "basics": {
-    "name": "Anton Van Kimmenade",
+    "name": "Toon van Kimmenade",
     "label": {
       "en": "Full-Stack Developer & IT Specialist",
       "nl": "Full-Stack Ontwikkelaar & IT Specialist"
@@ -267,8 +267,8 @@
     "methodologies": ["Agile", "Scrum", "SOLID", "Testing"]
   },
   "references": [
-    { "name": "Niels Munters", "company": "Conclusion Intelligence" },
-    { "name": "Zoe Viola", "company": "Conclusion Intelligence" }
+    { "name": "Zoe Viola", "company": "Conclusion Intelligence" },
+    { "name": "Niels Munters", "company": "Conclusion Intelligence" }
   ]
 }
     </script>
@@ -476,17 +476,29 @@
 
               <!-- References -->
               <section class="avoid-break">
-                <div class="section-title px-3 py-1 bg-neutral-50 border-none mb-[3mm]">
-                  <h2 class="text-[10pt] font-bold tracking-[0.15em] uppercase text-brand">
-                    ${currentLang === 'nl' ? 'Referenties' : 'References'}
+                <div class="flex items-center gap-3 mb-[3mm]">
+                  <h2 class="text-[10pt] font-bold tracking-[0.25em] uppercase text-brand">
+                    ${currentLang === 'nl' ? 'Referenties' : 'Reference'}
                   </h2>
+                  <div class="flex-1 h-px bg-brand/30"></div>
                 </div>
-                <div class="grid grid-cols-2 gap-4">
+
+                <div class="grid grid-cols-2 gap-x-[10mm] gap-y-[4mm]">
                   ${data.references.map(ref => `
                     <div class="text-[9pt]">
-                      <div class="font-bold text-brand">${ref.name}</div>
+                      <div class="font-bold text-brand text-[10pt]">${ref.name}</div>
                       <div class="text-neutral-600">${ref.company}</div>
-                      <div class="text-[8pt] italic opacity-60">${currentLang === 'nl' ? 'Contactgegevens op aanvraag' : 'Contact details upon request'}</div>
+
+                      ${(ref.phone || ref.email) ? `
+                        <div class="mt-[2mm] grid grid-cols-[auto_1fr] gap-x-[3mm] gap-y-[0.5mm] text-[8.5pt]">
+                          ${ref.phone ? `<div class=\"text-neutral-500 font-mono\">${currentLang === 'nl' ? 'Telefoon:' : 'Phone:'}</div><div>${ref.phone}</div>` : ''}
+                          ${ref.email ? `<div class=\"text-neutral-500 font-mono\">Email:</div><div class=\"break-words\">${ref.email}</div>` : ''}
+                        </div>
+                      ` : `
+                        <div class="mt-[1.5mm] text-[8pt] italic text-neutral-500">
+                          ${currentLang === 'nl' ? 'Contactgegevens op aanvraag' : 'Contact details upon request'}
+                        </div>
+                      `}
                     </div>
                   `).join('')}
                 </div>
