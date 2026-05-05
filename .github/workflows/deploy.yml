@@ -20,9 +20,13 @@ jobs:
           set -euo pipefail
           DEPLOY_DIR="$HOME/cv-site"
           echo "Deploying to $DEPLOY_DIR"
+          
           mkdir -p "$DEPLOY_DIR"
-          rsync -a --delete \
-            --exclude '.git/' \
-            --exclude '.github/' \
-            --exclude 'node_modules/' \
-            ./ "$DEPLOY_DIR/"
+          # Clean destination (mimic rsync --delete)
+          find "$DEPLOY_DIR" -mindepth 1 -delete
+          
+          # Copy all files including hidden ones
+          cp -rp . "$DEPLOY_DIR/"
+          
+          # Remove internal Git/GitHub files from the deployment folder
+          rm -rf "$DEPLOY_DIR/.git" "$DEPLOY_DIR/.github"
