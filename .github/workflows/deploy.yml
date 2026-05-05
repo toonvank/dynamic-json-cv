@@ -18,10 +18,9 @@ jobs:
       - name: Deploy to server directory
         run: |
           set -euo pipefail
-          DEPLOY_DIR="/var/www/cv"
+          DEPLOY_DIR="$HOME/cv-site"
           echo "Deploying to $DEPLOY_DIR"
-          sudo mkdir -p "$DEPLOY_DIR"
-          sudo chown -R $USER:$USER "$DEPLOY_DIR"
+          mkdir -p "$DEPLOY_DIR"
           rsync -a --delete \
             --exclude '.git/' \
             --exclude '.github/' \
