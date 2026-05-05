@@ -16,15 +16,12 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Deploy to server directory
-        env:
-          DEPLOY_DIR: ${{ vars.DEPLOY_DIR }}
         run: |
           set -euo pipefail
-          if [ -z "${DEPLOY_DIR:-}" ]; then
-            echo "Missing Actions variable DEPLOY_DIR (Settings → Secrets and variables → Actions → Variables)"
-            exit 1
-          fi
-          mkdir -p "$DEPLOY_DIR"
+          DEPLOY_DIR="/var/www/cv"
+          echo "Deploying to $DEPLOY_DIR"
+          sudo mkdir -p "$DEPLOY_DIR"
+          sudo chown -R $USER:$USER "$DEPLOY_DIR"
           rsync -a --delete \
             --exclude '.git/' \
             --exclude '.github/' \
