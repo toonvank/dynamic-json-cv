@@ -39,6 +39,9 @@ jobs:
           echo "Checking if python3 is available..."
           python3 --version || (echo "python3 not found" && exit 1)
 
+          echo "Ensuring port $PORT is allowed in firewall..."
+          sudo ufw allow $PORT/tcp || true
+
           echo "Starting web server on port $PORT..."
           # Kill any old instance
           pkill -f "python3 -m http.server $PORT" || true
