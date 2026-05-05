@@ -32,21 +32,27 @@ jobs:
           rm -rf "$DEPLOY_DIR/.git" "$DEPLOY_DIR/.github"
 
       - name: Start/Restart web server
+        env:
+          RUNNER_TRACKING_ID: ""
         run: |
           PORT=8080
+          echo "Checking if python3 is available..."
+          python3 --version || (echo "python3 not found" && exit 1)
+
           echo "Starting web server on port $PORT..."
-          # Kill any old instance of the python server on this port
+          # Kill any old instance
           pkill -f "python3 -m http.server $PORT" || true
           
           cd "$HOME/cv-site"
-          # Start the server in the background and detach it
-          nohup python3 -m http.server $PORT > server.log 2>&1 &
+          # Start the server using the RUNNER_TRACKING_ID trick to prevent cleanup
+          nohup python3 -m http.server $PORT --bind 0.0.0.0 > server.log 2>&1 &
           
-          # Give it a second to start and check if it's running
-          sleep 2
+          sleep 5
           if ps aux | grep -v grep | grep "python3 -m http.server $PORT" > /dev/null; then
-            echo "Server successfully started on port $PORT"
+            echo "Server is running in background on port $PORT."
+            echo "You should be able to access it at http://$(hostname -I | awk '{print $1}'):$PORT/cv-a4.html"
           else
-            echo "Server failed to start. Check ~/cv-site/server.log for details."
+            echo "ERROR: Server failed to stay alive. Last 10 lines of server.log:"
+            tail -n 10 server.log
             exit 1
           fi
