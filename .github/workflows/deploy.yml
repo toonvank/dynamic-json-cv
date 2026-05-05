@@ -30,3 +30,23 @@ jobs:
           
           # Remove internal Git/GitHub files from the deployment folder
           rm -rf "$DEPLOY_DIR/.git" "$DEPLOY_DIR/.github"
+
+      - name: Start/Restart web server
+        run: |
+          PORT=8080
+          echo "Starting web server on port $PORT..."
+          # Kill any old instance of the python server on this port
+          pkill -f "python3 -m http.server $PORT" || true
+          
+          cd "$HOME/cv-site"
+          # Start the server in the background and detach it
+          nohup python3 -m http.server $PORT > server.log 2>&1 &
+          
+          # Give it a second to start and check if it's running
+          sleep 2
+          if ps aux | grep -v grep | grep "python3 -m http.server $PORT" > /dev/null; then
+            echo "Server successfully started on port $PORT"
+          else
+            echo "Server failed to start. Check ~/cv-site/server.log for details."
+            exit 1
+          fi
