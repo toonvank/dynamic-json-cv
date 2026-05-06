@@ -1,0 +1,59 @@
+Anton Van Kimmenade
+Software Developer
+Gouden Regenstraat 9, 3630 Maasmechelen
++32489693234 | toonvankimmenade@gmail.com
+www.toonvank.com
+
+PROFIEL
+Afgestudeerd Full-Stack Developer, volhardend, nieuwsgierig en gedreven om te leren en te groeien. Stageplekken hebben praktijkervaring opgeleverd, waarbij aanpasbaarheid, samenwerking en resultaatgerichtheid ontwikkeld. Geniet van het aanpakken van uitdagingen, het verkennen van ideeën en het combineren van creativiteit met probleemoplossing.
+
+ERVARING
+
+Backend Developer | Smartschool - Smartbit CommV
+Nov '25 - Apr '26
+- Bijgedragen aan het uitbreiden van het platform en het up-to-date houden van de bestaande codebase.
+- Praktijkervaring opgedaan met het schrijven van schone, schaalbare code voor een high-traffic platform binnen een professioneel team.
+
+Full Stack Ontwikkelaar - Stagiair | Conclusion Intelligence
+Feb '25 - Mei '25
+- Ontwikkelde EV SmartCharge, een EV-laadapp met .NET Aspire, Redis en Flutter, met prioriteitsreserveringen en beheerfuncties voor verbeterde efficiëntie.
+- Optimaliseerde workflows via CI/CD in Azure, Docker, prestatietests en API-integraties (Keycloak, E-Flux).
+
+Backend Developer - Stagiair | Mediaworqs - PrintSimple
+Nov '22 - Jun '23
+- Ontwikkelde en onderhield PHP-gebaseerde CMS-platformen met behulp van Laravel, Drupal en Twill.
+- Creëerde een intern Project Tracking Platform om workflows te verbeteren en droeg bij aan de backend-logica voor diverse klantprojecten gebaseerd op modulaire CMS-architecturen.
+
+IT-ondersteuning & Ontwikkelingsspecialist Stage | Mecam Group
+Feb '19 - Mrt '19
+- Ontwikkelde en ondersteunde C# en ASP.NET Core applicaties voor HR- en productbeheersystemen, inclusief SQL-databasebeheer voor data-integriteit, prestaties en beveiliging.
+- Verantwoordelijk voor hardware-installatie, configuratie en reparaties van laptops, desktops, printers en netwerkapparatuur.
+
+IT Operations Stagiair | OCMW Maasmechelen
+Feb '18 - Mrt '18
+- IT optimalisatie en onderhoud om de operationele efficiëntie te verbeteren.
+- Ontwikkelen van Excel-automatiseringen met behulp van Visual Basic (VBA) voor de HR-afdeling.
+
+OPLEIDING
+
+2021 - 2025 | Hogeschool PXL
+- Bachelor Toegepaste Informatica
+- Graduaat Programmeren
+
+2017 - 2020 | Handelsschool Hasselt
+- IT Management
+
+SKILLS
+- .NET, Laravel, Symfony
+- C#, PHP, JavaScript, Java
+- SQL, MySQL, SQLite
+- Azure, AWS, Atlassian
+- Creative Cloud Stack
+
+TALEN
+- Nederlands, Engels (vloeiend)
+- Frans, Duits, Grieks (basis)
+
+REFERENTIE
+Zoë Viola | Conclusion Intelligence
+zoe.viola@conclusionintelligence.de

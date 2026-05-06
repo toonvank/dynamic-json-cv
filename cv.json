@@ -1,0 +1,98 @@
+{
+  "persoonlijke_gegevens": {
+    "naam": "Anton Van Kimmenade",
+    "functie": "Software Developer",
+    "contact": {
+      "telefoon": "+32489693234",
+      "email": "toonvankimmenade@gmail.com",
+      "adres": "Gouden Regenstraat 9, 3630 Maasmechelen",
+      "website": "www.toonvank.com"
+    }
+  },
+  "profiel": "Afgestudeerd Full-Stack Developer, volhardend, nieuwsgierig en gedreven om te leren en te groeien. Stageplekken hebben praktijkervaring opgeleverd, waarbij aanpasbaarheid, samenwerking en resultaatgerichtheid ontwikkeld. Geniet van het aanpakken van uitdagingen, het verkennen van ideeën en het combineren van creativiteit met probleemoplossing.",
+  "opleiding": [
+    {
+      "periode": "2021 - 2025",
+      "instelling": "Hogeschool PXL",
+      "diplomas": [
+        "Bachelor Toegepaste Informatica",
+        "Graduaat Programmeren"
+      ]
+    },
+    {
+      "periode": "2017 - 2020",
+      "instelling": "Handelsschool Hasselt",
+      "diploma": "IT Management"
+    }
+  ],
+  "ervaring": [
+    {
+      "bedrijf": "Smartschool - Smartbit CommV",
+      "periode": "Nov '25 - Apr '26",
+      "functie": "Backend Developer",
+      "taken": [
+        "Bijgedragen aan het uitbreiden van het platform en het up-to-date houden van de bestaande codebase.",
+        "Praktijkervaring opgedaan met het schrijven van schone, schaalbare code voor een high-traffic platform binnen een professioneel team."
+      ]
+    },
+    {
+      "bedrijf": "Conclusion Intelligence",
+      "periode": "Feb '25 - Mei '25",
+      "functie": "Full Stack Ontwikkelaar - Stagiair",
+      "taken": [
+        "Ontwikkelde EV SmartCharge, een EV-laadapp met .NET Aspire, Redis en Flutter, met prioriteitsreserveringen en beheerfuncties voor verbeterde efficiëntie.",
+        "Optimaliseerde workflows via CI/CD in Azure, Docker, prestatietests en API-integraties (Keycloak, E-Flux)."
+      ]
+    },
+    {
+      "bedrijf": "Mediaworqs - PrintSimple",
+      "periode": "Nov '22 - Jun '23",
+      "functie": "Backend Developer - Stagiair",
+      "taken": [
+        "Ontwikkelde en onderhield PHP-gebaseerde CMS-platformen met behulp van Laravel, Drupal en Twill.",
+        "Creëerde een intern Project Tracking Platform om workflows te verbeteren en droeg bij aan de backend-logica voor diverse klantprojecten gebaseerd op modulaire CMS-architecturen."
+      ]
+    },
+    {
+      "bedrijf": "Mecam Group",
+      "periode": "Feb '19 - Mrt '19",
+      "functie": "IT-ondersteuning & Ontwikkelingsspecialist Stage",
+      "taken": [
+        "Ontwikkelde en ondersteunde C# en ASP.NET Core applicaties voor HR- en productbeheersystemen, inclusief SQL-databasebeheer voor data-integriteit, prestaties en beveiliging.",
+        "Verantwoordelijk voor hardware-installatie, configuratie en reparaties van laptops, desktops, printers en netwerkapparatuur."
+      ]
+    },
+    {
+      "bedrijf": "OCMW Maasmechelen",
+      "periode": "Feb '18 - Mrt '18",
+      "functie": "IT Operations Stagiair",
+      "taken": [
+        "IT optimalisatie en onderhoud om de operationele efficiëntie te verbeteren.",
+        "Ontwikkelen van Excel-automatiseringen met behulp van Visual Basic (VBA) voor de HR-afdeling."
+      ]
+    }
+  ],
+  "skills": [
+    ".NET, Laravel, Symfony",
+    "C#, PHP, JavaScript, Java",
+    "SQL, MySQL, SQLite",
+    "Azure, AWS, Atlassian",
+    "Creative Cloud Stack"
+  ],
+  "talen": {
+    "vloeiend": [
+      "Nederlands",
+      "Engels"
+    ],
+    "basis": [
+      "Frans",
+      "Duits",
+      "Grieks"
+    ]
+  },
+  "referentie": {
+    "naam": "Zoë Viola",
+    "bedrijf": "Conclusion Intelligence",
+    "email": "zoe.viola@conclusionintelligence.de"
+  }
+}
