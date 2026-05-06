@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Anton van Kimmenade</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-bg: #1c3553;
+            --primary-text: #1c3553;
+            --text-dark: #333333;
+            --text-light: #555555;
+            --white: #ffffff;
+            --border-color: #b0c4de;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #eef2f5;
+            display: flex;
+            justify-content: center;
+            padding: 40px 20px;
+        }
+
+        .cv-container {
+            width: 210mm; /* A4 width */
+            min-height: 297mm; /* A4 height */
+            background-color: var(--white);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            display: flex;
+            overflow: hidden;
+        }
+
+        @media print {
+            body { padding: 0; background-color: #fff; }
+            .cv-container { box-shadow: none; width: 210mm; height: 297mm; }
+        }
+
+        /* --- SIDEBAR (Links) --- */
+        .sidebar {
+            width: 33%;
+            background-color: var(--primary-bg);
+            color: var(--white);
+            padding: 40px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .profile-img-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--white);
+        }
+
+        .sidebar h2 {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+            padding-bottom: 8px;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .contact-list, .skills-list, .lang-list {
+            list-style: none;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .contact-list li {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: 10px;
+            gap: 8px;
+        }
+
+        .sidebar-item {
+            margin-bottom: 25px;
+        }
+
+        .sidebar-item-title {
+            font-weight: 600;
+            font-size: 11px;
+            margin-bottom: 3px;
+        }
+        
+        .sidebar-item-subtitle {
+            font-size: 11px;
+            font-weight: 300;
+            margin-bottom: 2px;
+        }
+
+        .sidebar-item ul {
+            list-style-type: disc;
+            padding-left: 15px;
+            font-size: 11px;
+            font-weight: 300;
+        }
+
+        .skills-list li, .lang-list li {
+            position: relative;
+            padding-left: 12px;
+            margin-bottom: 6px;
+            font-weight: 300;
+        }
+
+        .skills-list li::before, .lang-list li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+
+        /* --- MAIN CONTENT (Rechts) --- */
+        .main-content {
+            width: 67%;
+            padding: 50px 40px;
+            color: var(--text-dark);
+        }
+
+        .header h1 {
+            font-size: 32px;
+            font-weight: 700;
+            color: var(--primary-text);
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+
+        .header h1 span {
+            font-weight: 300;
+        }
+
+        .header h3 {
+            font-size: 16px;
+            font-weight: 400;
+            color: var(--text-light);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .divider {
+            height: 3px;
+            background-color: var(--primary-text);
+            width: 100%;
+            margin-bottom: 25px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary-text);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 5px;
+            margin-bottom: 15px;
+            margin-top: 25px;
+        }
+
+        .profile-text {
+            font-size: 11px;
+            line-height: 1.6;
+            color: var(--text-light);
+            text-align: justify;
+        }
+
+        /* Timeline / Ervaring */
+        .timeline {
+            border-left: 1.5px solid var(--border-color);
+            padding-left: 20px;
+            margin-top: 20px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 25px;
+        }
+
+        .timeline-item::before {
+            content: "";
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            background-color: var(--primary-bg);
+            border-radius: 50%;
+            left: -25px;
+            top: 4px;
+        }
+
+        .timeline-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 2px;
+        }
+
+        .job-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .job-date {
+            font-size: 10px;
+            color: var(--text-light);
+            text-transform: uppercase;
+        }
+
+        .job-company {
+            font-size: 11px;
+            font-weight: 400;
+            color: var(--text-light);
+            margin-bottom: 8px;
+        }
+
+        .job-description {
+            list-style-type: disc;
+            padding-left: 15px;
+            font-size: 11px;
+            line-height: 1.5;
+            color: var(--text-light);
+        }
+
+        .job-description li {
+            margin-bottom: 4px;
+        }
+
+        /* Referentie small text */
+        .ref-name { font-weight: 600; font-size: 12px; }
+        .ref-company { font-weight: 300; font-size: 11px; margin-bottom: 2px;}
+        .ref-email { font-weight: 300; font-size: 9px;}
+    </style>
+</head>
+<body>
+
+    <div id="cv-content" class="cv-container">
+        <!-- Content populated by JavaScript -->
+    </div>
+
+<script id="cv-data" type="application/json">
+{
+  "basics": {
+    "name": "Anton van Kimmenade",
+    "label": "SOFTWARE DEVELOPER",
+    "email": "toonvankimmenade@gmail.com",
+    "phone": "+32489693234",
+    "url": "https://www.toonvank.com",
+    "summary": "Afgestudeerd Full-Stack Developer, volhardend, nieuwsgierig en gedreven om te leren en te groeien. Stageplekken hebben praktijkervaring opgeleverd, waarbij aanpasbaarheid, samenwerking en resultaatgerichtheid ontwikkeld. Geniet van het aanpakken van uitdagingen, het verkennen van ideeën en het combineren van creativiteit met probleemoplossing.",
+    "location": {
+      "address": "Gouden Regenstraat 9",
+      "postalCode": "3630",
+      "city": "Maasmechelen"
+    }
+  },
+  "experience": [
+    {
+      "company": "Smartschool - Smartbit CommV",
+      "position": "Backend Developer",
+      "startDate": "NOV '25",
+      "endDate": "APR '26",
+      "description": "Bijgedragen aan het uitbreiden van het platform en het up-to-date houden van de bestaande codebase. Praktijkervaring opgedaan met het schrijven van schone, schaalbare code voor een high-traffic platform binnen een professioneel team"
+    },
+    {
+      "company": "Conclusion Intelligence",
+      "position": "Full Stack Ontwikkelaar - Stagiair",
+      "startDate": "FEB '25",
+      "endDate": "MEI '25",
+      "description": "Ontwikkelde EV SmartCharge, een EV-laadapp met .NET Aspire, Redis en Flutter, met prioriteitsreserveringen en beheerfuncties voor verbeterde efficiëntie. Optimaliseerde workflows via CI/CD in Azure, Docker, prestatietests en API-integraties (Keycloak, E-Flux)."
+    },
+    {
+      "company": "Mediaworqs - PrintSimple",
+      "position": "Backend Developer - Stagiair",
+      "startDate": "NOV '22",
+      "endDate": "JUN '23",
+      "description": "Ontwikkelde en onderhield PHP-gebaseerde CMS-platformen met behulp van Laravel, Drupal en Twill. Creëerde een intern Project Tracking Platform om workflows te verbeteren en droeg bij aan de backend-logica voor diverse klantprojecten gebaseerd op modulaire CMS-architecturen."
+    },
+    {
+      "company": "Mecam Group",
+      "position": "IT-ondersteuning & Ontwikkelingsspecialist Stage",
+      "startDate": "FEB '19",
+      "endDate": "MRT '19",
+      "description": "Ontwikkelde en ondersteunde C# en ASP.NET Core applicaties voor HR- en productbeheersystemen, inclusief SQL-databasebeheer voor data-integriteit, prestaties en beveiliging. Verantwoordelijk voor hardware-installatie, configuratie en reparaties van laptops, desktops, printers en netwerkapparatuur."
+    },
+    {
+      "company": "OCMW Maasmechelen",
+      "position": "IT Operations Stagiair",
+      "startDate": "FEB '18",
+      "endDate": "MRT '18",
+      "description": "IT optimalisatie en onderhoud om de operationele efficiëntie te verbeteren. Ontwikkelen van Excel-automatiseringen met behulp van Visual Basic (VBA) voor de HR-afdeling."
+    }
+  ],
+  "education": [
+    {
+      "institution": "HOGESCHOOL PXL",
+      "area": "Bachelor Toegepaste Informatica, Graduaat Programmeren",
+      "startDate": "2021",
+      "endDate": "2025"
+    },
+    {
+      "institution": "HANDELSSCHOOL HASSELT",
+      "area": "IT Management",
+      "startDate": "2017",
+      "endDate": "2020"
+    }
+  ],
+  "skills": {
+    "languages": ["Nederlands, Engels (Vloeiend)", "Frans/Duits/Grieks (Basis)"],
+    "frameworks": [".NET", "Laravel", "Symfony", "Flutter"],
+    "databases": ["SQL", "MySQL", "SQLite"],
+    "tools": ["Azure", "AWS", "Atlassian", "Creative Cloud Stack"]
+  },
+  "references": [
+    { 
+      "name": "Zoë Viola", 
+      "company": "Conclusion Intelligence",
+      "email": "zoe.viola@conclusionintelligence.de"
+    }
+  ]
+}
+</script>
+
+<script>
+    const data = JSON.parse(document.getElementById('cv-data').textContent);
+    const b = data.basics;
+    
+    const content = `
+        <aside class="sidebar">
+            <div class="profile-img-container">
+                <img src="https://github.com/toonvank.png" alt="${b.name}" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+            </div>
+
+            <div>
+                <h2>CONTACT</h2>
+                <ul class="contact-list">
+                    <li>📞 ${b.phone}</li>
+                    <li>✉️ ${b.email}</li>
+                    <li>📍 ${b.location.address},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${b.location.postalCode} ${b.location.city}</li>
+                    <li>🌐 ${b.url.replace('https://', '')}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>OPLEIDING</h2>
+                ${data.education.map(edu => `
+                    <div class="sidebar-item">
+                        <div class="sidebar-item-title">${edu.startDate} - ${edu.endDate}<br>${edu.institution}</div>
+                        <ul>
+                            <li>${edu.area}</li>
+                        </ul>
+                    </div>
+                `).join('')}
+            </div>
+
+            <div>
+                <h2>SKILLS</h2>
+                <ul class="skills-list">
+                    <li>${data.skills.frameworks.join(', ')}</li>
+                    <li>${data.skills.programming_languages.slice(0, 5).join(', ')}</li>
+                    <li>${data.skills.databases.join(', ')}</li>
+                    <li>${data.skills.tools.slice(0, 5).join(', ')}</li>
+                </ul>
+            </div>
+
+            <div>
+                <h2>TALEN</h2>
+                <ul class="lang-list">
+                    ${data.skills.languages.map(l => `<li>${l}</li>`).join('')}
+                </ul>
+            </div>
+
+            <div>
+                <h2>REFERENTIE</h2>
+                <div class="ref-name">${data.references[0].name}</div>
+                <div class="ref-company">${data.references[0].company}</div>
+                <div class="ref-email">${data.references[0].email}</div>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <header class="header">
+                <h1><strong>${b.name.split(' ')[0].toUpperCase()}</strong> <span>${b.name.split(' ').slice(1).join(' ').toUpperCase()}</span></h1>
+                <h3>${b.label}</h3>
+                <div class="divider"></div>
+            </header>
+
+            <section>
+                <h2 class="section-title">PROFIEL</h2>
+                <p class="profile-text">${b.summary}</p>
+            </section>
+
+            <section>
+                <h2 class="section-title">ERVARING</h2>
+                <div class="timeline">
+                    ${data.experience.map(exp => `
+                        <div class="timeline-item">
+                            <div class="timeline-header">
+                                <span class="job-title">${exp.company}</span>
+                                <span class="job-date">${exp.startDate} - ${exp.endDate}</span>
+                            </div>
+                            <div class="job-company">${exp.position}</div>
+                            <ul class="job-description">
+                                <li>${exp.description}</li>
+                            </ul>
+                        </div>
+                    `).join('')}
+                </div>
+            </section>
+        </main>
+    `;
+    
+    document.getElementById('cv-content').innerHTML = content;
+</script>
+
+</body>
+</html>

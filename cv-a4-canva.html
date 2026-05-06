@@ -3,12 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Toon van Kimmenade — Curriculum Vitae</title>
+    <title>Anton van Kimmenade — Curriculum Vitae</title>
 
-    <!-- Fonts -->
+    <!-- Fonts (Dynamically loaded based on template) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Fira+Code:wght@400;600;700&family=Poppins:wght@300;400;600;700;800&family=Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400&family=Oswald:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,700;0,800;1,400&family=Space+Grotesk:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&display=swap" rel="stylesheet" />
+    <link id="dynamic-fonts" rel="stylesheet" />
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
@@ -68,6 +68,225 @@
         page-break-inside: avoid;
       }
 
+      /* Canva Template Specific Styles */
+      .template-canva {
+        --primary-bg: #1c3553;
+        --primary-text: #1c3553;
+        --text-dark: #333333;
+        --text-light: #555555;
+        --white: #ffffff;
+        --border-color: #b0c4de;
+        font-family: 'Inter', sans-serif;
+        display: flex;
+        height: 100%;
+        color: var(--text-dark);
+      }
+
+      .template-canva .sidebar {
+        width: 33%;
+        background-color: var(--primary-bg);
+        color: var(--white);
+        padding: 40px 30px;
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        height: 100%;
+      }
+
+      .template-canva .profile-img-container {
+        display: flex;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+
+      .template-canva .profile-img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 4px solid var(--white);
+      }
+
+      .template-canva .sidebar h2 {
+        font-size: 14px;
+        letter-spacing: 2px;
+        text-transform: uppercase;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.4);
+        padding-bottom: 8px;
+        margin-bottom: 15px;
+        font-weight: 600;
+      }
+
+      .template-canva .contact-list, .template-canva .skills-list, .template-canva .lang-list {
+        list-style: none;
+        font-size: 11px;
+        line-height: 1.6;
+      }
+
+      .template-canva .contact-list li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 10px;
+        gap: 8px;
+      }
+
+      .template-canva .monochromatic-icons li {
+        filter: grayscale(100%) brightness(0) invert(1);
+        opacity: 0.9;
+      }
+
+      .template-canva .sidebar-item {
+        margin-bottom: 25px;
+      }
+
+      .template-canva .sidebar-item-title {
+        font-weight: 600;
+        font-size: 11px;
+        margin-bottom: 3px;
+      }
+
+      .template-canva .sidebar-item ul {
+        list-style-type: disc;
+        padding-left: 15px;
+        font-size: 11px;
+        font-weight: 300;
+      }
+
+      .template-canva .skills-list li, .template-canva .lang-list li {
+        position: relative;
+        padding-left: 12px;
+        margin-bottom: 6px;
+        font-weight: 300;
+      }
+
+      .template-canva .skills-list li::before, .template-canva .lang-list li::before {
+        content: "•";
+        position: absolute;
+        left: 0;
+        top: 0;
+      }
+
+      .template-canva .main-content {
+        width: 67%;
+        padding: 50px 40px;
+        color: var(--text-dark);
+        background-color: var(--white);
+      }
+
+      .template-canva .header h1 {
+        font-size: 32px;
+        font-weight: 700;
+        color: var(--primary-text);
+        margin-bottom: 5px;
+        text-transform: uppercase;
+      }
+
+      .template-canva .header h1 span {
+        font-weight: 300;
+      }
+
+      .template-canva .header h3 {
+        font-size: 16px;
+        font-weight: 400;
+        color: var(--text-light);
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        margin-bottom: 20px;
+      }
+
+      .template-canva .divider {
+        height: 3px;
+        background-color: var(--primary-text);
+        width: 100%;
+        margin-bottom: 25px;
+      }
+
+      .template-canva .section-title {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--primary-text);
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: 5px;
+        margin-bottom: 15px;
+        margin-top: 25px;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+      }
+
+      .template-canva .profile-text {
+        font-size: 11px;
+        line-height: 1.6;
+        color: var(--text-light);
+        text-align: justify;
+      }
+
+      .template-canva .timeline {
+        border-left: 1.5px solid var(--border-color);
+        padding-left: 20px;
+        margin-top: 20px;
+      }
+
+      .template-canva .timeline-item {
+        position: relative;
+        margin-bottom: 25px;
+      }
+
+      .template-canva .timeline-item::before {
+        content: "";
+        position: absolute;
+        width: 9px;
+        height: 9px;
+        background-color: var(--primary-bg);
+        border-radius: 50%;
+        left: -25px;
+        top: 4px;
+      }
+
+      .template-canva .timeline-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        margin-bottom: 2px;
+      }
+
+      .template-canva .job-title {
+        font-size: 12px;
+        font-weight: 700;
+        color: var(--text-dark);
+      }
+
+      .template-canva .job-date {
+        font-size: 10px;
+        color: var(--text-light);
+        text-transform: uppercase;
+      }
+
+      .template-canva .job-company {
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--text-light);
+        margin-bottom: 8px;
+      }
+
+      .template-canva .job-description {
+        list-style-type: disc;
+        padding-left: 15px;
+        font-size: 11px;
+        line-height: 1.5;
+        color: var(--text-light);
+      }
+
+      .template-canva .job-description li {
+        margin-bottom: 4px;
+      }
+
+      .template-canva .ref-name { font-weight: 600; font-size: 12px; }
+      .template-canva .ref-company { font-weight: 300; font-size: 11px; margin-bottom: 2px;}
+      .template-canva .ref-email { font-weight: 300; font-size: 9px;}
+
       /* Custom scrollbar for preview */
       ::-webkit-scrollbar { width: 8px; }
       ::-webkit-scrollbar-track { background: #f1f1f1; }
@@ -88,7 +307,8 @@
         <div class="flex flex-col gap-1">
           <span class="text-[8pt] font-bold text-neutral-500 uppercase tracking-wider">Template</span>
           <div class="grid grid-cols-3 gap-1">
-            <button onclick="setTemplate('modern')" id="btn-tpl-modern" class="px-2 py-1 rounded bg-brand text-white font-bold text-[8pt]">Modern</button>
+            <button onclick="setTemplate('canva')" id="btn-tpl-canva" class="px-2 py-1 rounded bg-brand text-white font-bold text-[8pt]">Canva</button>
+            <button onclick="setTemplate('modern')" id="btn-tpl-modern" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Modern</button>
             <button onclick="setTemplate('classic')" id="btn-tpl-classic" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Classic</button>
             <button onclick="setTemplate('executive')" id="btn-tpl-executive" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Exec</button>
             <button onclick="setTemplate('developer')" id="btn-tpl-developer" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Dev</button>
@@ -127,17 +347,17 @@
     <script id="cv-data" type="application/json">
 {
   "basics": {
-    "name": "Toon van Kimmenade",
+    "name": "Anton van Kimmenade",
     "label": {
-      "en": "Full-Stack Developer & IT Specialist",
-      "nl": "Full-Stack Ontwikkelaar & IT Specialist"
+      "en": "Software Developer",
+      "nl": "SOFTWARE DEVELOPER"
     },
     "email": "toonvankimmenade@gmail.com",
-    "phone": "+32 489 69 32 34",
-    "url": "https://linkedin.com/in/toonvank",
+    "phone": "+32489693234",
+    "url": "https://www.toonvank.com",
     "summary": {
-      "en": "Motivated full-stack developer with a broad range of internship experiences and a full technical stack (backend, frontend, CI/CD, hardware). Combines technical creativity with Agile/Scrum teamwork experience, focusing on quality through testing and SOLID principles. Proficient in .NET, PHP, Flutter, Java, and Python.",
-      "nl": "Gedreven full-stack ontwikkelaar met een breed scala aan stage-ervaringen en een volledige technische stack (backend, frontend, CI/CD, hardware). Combineert technische creativiteit met Agile/Scrum teamworkervaring, met een focus op kwaliteit via testing en SOLID-principes. Vaardig in .NET, PHP, Flutter, Java en Python."
+      "en": "Graduated Full-Stack Developer, persistent, curious, and driven to learn and grow. Internships provided real-world experience, teaching adaptability, teamwork, and results-driven focus. Enjoys tackling challenges, exploring ideas, and blending creativity with problem-solving.",
+      "nl": "Afgestudeerd Full-Stack Developer, volhardend, nieuwsgierig en gedreven om te leren en te groeien. Stageplekken hebben praktijkervaring opgeleverd, waarbij aanpasbaarheid, samenwerking en resultaatgerichtheid ontwikkeld. Geniet van het aanpakken van uitdagingen, het verkennen van ideeën en het combineren van creativiteit met probleemoplossing."
     },
     "location": {
       "address": "Gouden Regenstraat 9",
@@ -149,156 +369,105 @@
   },
   "experience": [
     {
+      "company": "Smartschool - Smartbit CommV",
+      "position": {
+        "en": "Backend Developer",
+        "nl": "Backend Developer"
+      },
+      "startDate": "NOV '25",
+      "endDate": "APR '26",
+      "description": {
+        "en": "Contributed to expanding the platform and keeping the existing codebase up-to-date. Gained practical experience in writing clean, scalable code for a high-traffic platform within a professional team.",
+        "nl": "Bijgedragen aan het uitbreiden van het platform en het up-to-date houden van de bestaande codebase. Praktijkervaring opgedaan met het schrijven van schone, schaalbare code voor een high-traffic platform binnen een professioneel team"
+      }
+    },
+    {
       "company": "Conclusion Intelligence",
       "position": {
-        "en": "Full Stack Developer (Internship)",
-        "nl": "Full Stack Ontwikkelaar (Stage)"
+        "en": "Full Stack Developer - Intern",
+        "nl": "Full Stack Ontwikkelaar - Stagiair"
       },
-      "startDate": "2025-02",
-      "endDate": "2025-06",
+      "startDate": "FEB '25",
+      "endDate": "MEI '25",
       "description": {
-        "en": "Developed the EV SmartCharge app using .NET Aspire and Flutter, implementing priority reservation logic and CI/CD workflows in Azure.",
-        "nl": "Ontwikkeling van de EV SmartCharge-app met .NET Aspire en Flutter, inclusief implementatie van prioritaire reserveringslogica en CI/CD-workflows in Azure."
+        "en": "Developed EV SmartCharge, an EV charging app with .NET Aspire, Redis and Flutter, featuring priority reservations and management functions for improved efficiency. Optimized workflows via CI/CD in Azure, Docker, performance testing, and API integrations (Keycloak, E-Flux).",
+        "nl": "Ontwikkelde EV SmartCharge, een EV-laadapp met .NET Aspire, Redis en Flutter, met prioriteitsreserveringen en beheerfuncties voor verbeterde efficiëntie. Optimaliseerde workflows via CI/CD in Azure, Docker, prestatietests en API-integraties (Keycloak, E-Flux)."
       }
     },
     {
       "company": "Mediaworqs - PrintSimple",
       "position": {
-        "en": "Full Stack Developer (Internship)",
-        "nl": "Full Stack Ontwikkelaar (Stage)"
+        "en": "Backend Developer - Intern",
+        "nl": "Backend Developer - Stagiair"
       },
-      "startDate": "2022-09",
-      "endDate": "2023-06",
+      "startDate": "NOV '22",
+      "endDate": "JUN '23",
       "description": {
-        "en": "Development of PHP CMS solutions (Laravel, Drupal) for clients, including the Libera platform.",
-        "nl": "Ontwikkeling van PHP CMS-oplossingen (Laravel, Drupal) voor klanten, waaronder het Libera-platform."
+        "en": "Developed and maintained PHP-based CMS platforms using Laravel, Drupal, and Twill. Created an internal Project Tracking Platform to improve workflows and contributed to backend logic for various client projects based on modular CMS architectures.",
+        "nl": "Ontwikkelde en onderhield PHP-gebaseerde CMS-platformen met behulp van Laravel, Drupal en Twill. Creëerde een intern Project Tracking Platform om workflows te verbeteren en droeg bij aan de backend-logica voor diverse klantprojecten gebaseerd op modulaire CMS-architecturen."
       }
     },
     {
       "company": "Mecam Group",
       "position": {
-        "en": "IT Support & Development Specialist",
-        "nl": "IT-ondersteuning & Ontwikkelingsspecialist"
+        "en": "IT Support & Development Specialist - Intern",
+        "nl": "IT-ondersteuning & Ontwikkelingsspecialist Stage"
       },
-      "startDate": "2019-02",
-      "endDate": "2019-12",
+      "startDate": "FEB '19",
+      "endDate": "MRT '19",
       "description": {
-        "en": "Development and support of C#/ASP.NET Core applications for HR and product management systems, including SQL database management for optimal performance and security.",
-        "nl": "Ontwikkeling en ondersteuning van C#/ASP.NET Core-applicaties voor HR- en productbeheersystemen, inclusief SQL-databasebeheer voor optimale prestaties en beveiliging."
+        "en": "Developed and supported C# and ASP.NET Core applications for HR and product management systems, including SQL database management for data integrity, performance, and security. Responsible for hardware installation, configuration, and repairs of laptops, desktops, printers, and network equipment.",
+        "nl": "Ontwikkelde en ondersteunde C# en ASP.NET Core applicaties voor HR- en productbeheersystemen, inclusief SQL-databasebeheer voor data-integriteit, prestaties en beveiliging. Verantwoordelijk voor hardware-installatie, configuratie en reparaties van laptops, desktops, printers en netwerkapparatuur."
       }
     },
     {
       "company": "OCMW Maasmechelen",
-      "position": "HR Department (Internship)",
-      "startDate": "2018-02",
-      "endDate": "2018-02",
-      "description": {
-        "en": "Short-term internship within the Human Resources department.",
-        "nl": "Kortstondige stage binnen de HR-afdeling."
-      }
-    },
-    {
-      "company": "Primary School St-Jan Maasmechelen",
       "position": {
-        "en": "IT Maintenance & Support",
-        "nl": "IT-onderhoud & Ondersteuning"
+        "en": "IT Operations - Intern",
+        "nl": "IT Operations Stagiair"
       },
-      "startDate": "2017-02",
-      "endDate": "2017-02",
+      "startDate": "FEB '18",
+      "endDate": "MRT '18",
       "description": {
-        "en": "Provided IT support including hardware maintenance and created time-saving Excel automations using VBA.",
-        "nl": "Verleende IT-ondersteuning inclusief hardwareonderhoud en ontwikkelde tijdbesparende Excel-automatiseringen met behulp van VBA."
+        "en": "IT optimization and maintenance to improve operational efficiency. Developing Excel automations using Visual Basic (VBA) for the HR department.",
+        "nl": "IT optimalisatie en onderhoud om de operationele efficiëntie te verbeteren. Ontwikkelen van Excel-automatiseringen met behulp van Visual Basic (VBA) voor de HR-afdeling."
       }
     }
   ],
   "education": [
     {
-      "institution": "Hogeschool PXL",
-      "area": "Bachelor of Applied Computer Science",
-      "studyType": "Professional Bachelor",
+      "institution": "HOGESCHOOL PXL",
+      "area": {
+        "en": "Bachelor Applied Computer Science, Associate Degree Programming",
+        "nl": "Bachelor Toegepaste Informatica, Graduaat Programmeren"
+      },
       "startDate": "2021",
       "endDate": "2025"
     },
     {
-      "institution": "Hogeschool PXL",
-      "area": "Associate Degree in Programming",
-      "studyType": "Associate Degree",
+      "institution": "HANDELSSCHOOL HASSELT",
+      "area": "IT Management",
       "startDate": "2017",
       "endDate": "2020"
-    },
-    {
-      "institution": "UCLL Hasselt",
-      "area": {
-        "en": "Educational Psychology",
-        "nl": "Orthopedagogie"
-      },
-      "studyType": "Bachelor",
-      "startDate": "2020",
-      "endDate": "2021"
-    },
-    {
-      "institution": "Provinciale Handelsschool Hasselt",
-      "area": "IT Management & Programming",
-      "studyType": "Secondary Education",
-      "startDate": "2017",
-      "endDate": "2020"
-    },
-    {
-      "institution": "Kunstacademie Maasmechelen",
-      "area": {
-        "en": "Graphic Design",
-        "nl": "Grafische Ontwikkeling"
-      },
-      "startDate": "2017",
-      "endDate": "2020"
-    }
-  ],
-  "projects": [
-    {
-      "name": "EV SmartCharge",
-      "description": {
-        "en": "Scalable electric vehicle charging optimization (.NET + Flutter).",
-        "nl": "Schaalbare optimalisatie voor het laden van elektrische voertuigen (.NET + Flutter)."
-      }
-    },
-    {
-      "name": "Project Tracking Platform",
-      "description": {
-        "en": "Project management tracking system built with Laravel.",
-        "nl": "Volgsysteem voor projectbeheer gebouwd met Laravel."
-      }
-    },
-    {
-      "name": "Parking Attendant Helper App",
-      "description": {
-        "en": "Coordination and communication app for parking attendants (Appwrite + Flutter).",
-        "nl": "Coördinatie- en communicatie-app voor parkeerwachters (Appwrite + Flutter)."
-      }
-    },
-    {
-      "name": "SEPApp",
-      "description": {
-        "en": "Streamlined group payments system (Appwrite + ASP.NET).",
-        "nl": "Gestroomlijnd systeem voor groepsbetalingen (Appwrite + ASP.NET)."
-      }
     }
   ],
   "skills": {
     "languages": [
-      { "language": "Dutch", "fluency": "Native" },
-      { "language": "English", "fluency": "B2 (Upper Intermediate)" },
-      { "language": "Greek", "fluency": "B1 (Intermediate)" },
-      { "language": "French", "fluency": "A2 (Elementary)" },
-      { "language": "German", "fluency": "A1 (Beginner)" }
+      { "language": { "en": "Dutch, English (Fluent)", "nl": "Nederlands, Engels (Vloeiend)" } },
+      { "language": { "en": "French/German/Greek (Basics)", "nl": "Frans/Duits/Grieks (Basis)" } }
     ],
     "programming_languages": ["C#", "PHP", "Dart", "Java", "Python", "SQL", "JavaScript", "HTML/CSS", "VBA"],
-    "frameworks": [".NET Core", "ASP.NET Core", "Laravel", "Drupal", "Flutter", ".NET Aspire", "Appwrite"],
-    "tools": ["Azure", "AWS", "Docker", "Linux", "CI/CD", "Git", "Photoshop", "Illustrator", "Premiere"],
-    "methodologies": ["Agile", "Scrum", "SOLID", "Testing"]
+    "frameworks": [".NET", "Laravel", "Symfony", "Flutter"],
+    "databases": ["SQL", "MySQL", "SQLite"],
+    "tools": ["Azure", "AWS", "Atlassian", "Docker", "Git", "Photoshop", "Illustrator", "Premiere"]
   },
   "references": [
-    { "name": "Zoe Viola", "company": "Conclusion Intelligence" },
-    { "name": "Niels Munters", "company": "Conclusion Intelligence" }
+    { 
+      "name": "Zoë Viola", 
+      "company": "Conclusion Intelligence",
+      "email": "zoe.viola@conclusionintelligence.de",
+      "phone": "+3227129676"
+    }
   ]
 }
     </script>
@@ -306,7 +475,7 @@
     <!-- Rendering Logic -->
     <script>
       let currentLang = localStorage.getItem('cv-lang') || 'nl';
-      let currentTemplate = localStorage.getItem('cv-template') || 'modern';
+      let currentTemplate = localStorage.getItem('cv-template') || 'canva';
       let data = {};
 
       function getText(obj) {
@@ -332,8 +501,33 @@
       function setTemplate(tpl) {
         currentTemplate = tpl;
         localStorage.setItem('cv-template', tpl);
+        loadFonts(tpl);
         render();
         updateUI();
+      }
+
+      function loadFonts(tpl) {
+        const fontMap = {
+          'canva': 'Inter:wght@300;400;600;700',
+          'modern': 'Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700',
+          'classic': 'Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700',
+          'executive': 'Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400',
+          'developer': 'Poppins:wght@300;400;600;700;800',
+          'minimalist': 'Playfair+Display:ital,wght@0,400;0,700;0,900;1,400&family=Lato:ital,wght@0,400;0,700;1,400;1,700',
+          'timeline': 'Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700',
+          'editorial': 'Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700',
+          'hacker': 'Fira+Code:wght@400;600;700',
+          'swiss': 'Poppins:wght@300;400;600;700;800',
+          'academic': 'Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400',
+          'architect': 'Oswald:wght@400;600;700',
+          'newspaper': 'EB+Garamond:ital,wght@0,400;0,500;0,700;0,800;1,400',
+          'brutalist': 'Space+Grotesk:wght@300;400;500;600;700',
+          'boutique': 'Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400'
+        };
+
+        const families = fontMap[tpl] || fontMap['canva'];
+        const url = `https://fonts.googleapis.com/css2?family=${families}&display=swap`;
+        document.getElementById('dynamic-fonts').href = url;
       }
 
       function updateUI() {
@@ -342,10 +536,12 @@
         document.getElementById('btn-en').className = currentLang === 'en' ? 'px-3 py-1 rounded bg-brand text-white font-bold text-[9pt]' : 'px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[9pt]';
 
         // Update template buttons
-        const templates = ['modern', 'classic', 'executive', 'developer', 'minimalist', 'timeline', 'editorial', 'hacker', 'swiss', 'academic', 'architect', 'newspaper', 'brutalist', 'boutique'];
+        const templates = ['canva', 'modern', 'classic', 'executive', 'developer', 'minimalist', 'timeline', 'editorial', 'hacker', 'swiss', 'academic', 'architect', 'newspaper', 'brutalist', 'boutique'];
         templates.forEach(t => {
           const btn = document.getElementById(`btn-tpl-${t}`);
-          btn.className = currentTemplate === t ? 'px-2 py-1 rounded bg-brand text-white font-bold text-[8pt]' : 'px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]';
+          if (btn) {
+            btn.className = currentTemplate === t ? 'px-2 py-1 rounded bg-brand text-white font-bold text-[8pt]' : 'px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]';
+          }
         });
       }
 
@@ -360,7 +556,9 @@
       function render() {
         const container = document.getElementById('cv-content');
 
-        if (currentTemplate === 'modern') {
+        if (currentTemplate === 'canva') {
+          container.innerHTML = renderCanva();
+        } else if (currentTemplate === 'modern') {
           container.innerHTML = renderModernSidebar();
         } else if (currentTemplate === 'classic') {
           container.innerHTML = renderClassic();
@@ -394,8 +592,104 @@
         const b = data.basics;
         const customPhoto = localStorage.getItem('cv-photo-url');
         const handle = b.url.split('/').filter(Boolean).pop();
-        const photoSrc = customPhoto || 'Downloads/picture.jpg';
+        const photoSrc = customPhoto || 'https://github.com/toonvank.png'; // Default to user's github photo
         return { b, photoSrc, handle };
+      }
+
+      function renderCanva() {
+        const { b, photoSrc } = getCommonData();
+        return `
+          <div class="template-canva h-full">
+            <!-- SIDEBAR (Left) -->
+            <aside class="sidebar">
+              <div class="profile-img-container">
+                <img src="${photoSrc}" alt="${b.name}" class="profile-img" onerror="this.src='https://via.placeholder.com/150'">
+              </div>
+
+              <div>
+                <h2>CONTACT</h2>
+                <ul class="contact-list monochromatic-icons">
+                  <li>📞 ${b.phone}</li>
+                  <li>✉️ ${b.email}</li>
+                  <li>📍 ${b.location.address},<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${b.location.postalCode} ${b.location.city}</li>
+                  <li>🌐 ${b.url.replace('https://', '')}</li>
+                </ul>
+              </div>
+
+              <div>
+                <h2>${currentLang === 'nl' ? 'OPLEIDING' : 'EDUCATION'}</h2>
+                ${data.education.map(edu => `
+                  <div class="sidebar-item">
+                    <div class="sidebar-item-title">${edu.startDate} - ${edu.endDate}<br>${edu.institution}</div>
+                    <ul>
+                      <li>${getText(edu.area)}</li>
+                    </ul>
+                  </div>
+                `).join('')}
+              </div>
+
+              <div>
+                <h2>SKILLS</h2>
+                <ul class="skills-list">
+                  <li>${data.skills.frameworks.join(', ')}</li>
+                  <li>${data.skills.programming_languages.slice(0, 5).join(', ')}</li>
+                  <li>${data.skills.databases.join(', ')}</li>
+                  <li>${data.skills.tools.slice(0, 5).join(', ')}</li>
+                </ul>
+              </div>
+
+              <div>
+                <h2>${currentLang === 'nl' ? 'TALEN' : 'LANGUAGES'}</h2>
+                <ul class="lang-list">
+                  ${data.skills.languages.map(l => `<li>${getText(l.language)}</li>`).join('')}
+                </ul>
+              </div>
+
+              ${data.references && data.references.length > 0 ? `
+              <div class="avoid-break">
+                <h2>${currentLang === 'nl' ? 'REFERENTIE' : 'REFERENCE'}</h2>
+                <div class="ref-name">${data.references[0].name}</div>
+                <div class="ref-company">${data.references[0].company}</div>
+                <div class="ref-email text-[9px] opacity-80 mt-1">${data.references[0].email}</div>
+              </div>
+              ` : ''}
+            </aside>
+
+            <!-- MAIN CONTENT (Right) -->
+            <main class="main-content">
+              <header class="header">
+                <h1><strong>${b.name.split(' ')[0].toUpperCase()}</strong> <span>${b.name.split(' ').slice(1).join(' ').toUpperCase()}</span></h1>
+                <h3>${getText(b.label)}</h3>
+                <div class="divider"></div>
+              </header>
+
+              <section>
+                <h2 class="section-title">${currentLang === 'nl' ? 'PROFIEL' : 'PROFILE'}</h2>
+                <p class="profile-text">
+                  ${getText(b.summary)}
+                </p>
+              </section>
+
+              <section>
+                <h2 class="section-title">${currentLang === 'nl' ? 'ERVARING' : 'EXPERIENCE'}</h2>
+                <div class="timeline">
+                  ${data.experience.map(exp => `
+                    <div class="timeline-item">
+                      <div class="timeline-header">
+                        <span class="job-title">${exp.company}</span>
+                        <span class="job-date">${exp.startDate} - ${exp.endDate}</span>
+                      </div>
+                      <div class="job-company">${getText(exp.position)}</div>
+                      <ul class="job-description">
+                        <li>${getText(exp.description)}</li>
+                      </ul>
+                    </div>
+                  `).join('')}
+                </div>
+              </section>
+            </main>
+          </div>
+        `;
       }
 
       function renderModernSidebar() {
@@ -1692,6 +1986,7 @@
       // Initial load
       document.addEventListener('DOMContentLoaded', () => {
         data = JSON.parse(document.getElementById('cv-data').textContent);
+        loadFonts(currentTemplate);
         render();
         updateUI();
       });
