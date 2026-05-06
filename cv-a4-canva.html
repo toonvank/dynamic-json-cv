@@ -18,15 +18,16 @@
           extend: {
             fontFamily: {
               heading: ["Montserrat", "sans-serif"],
-              sans: ["Lato", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
+              sans: ["Inter", "system-ui", "sans-serif"],
               serif: ["Playfair Display", "serif"],
-              mono: ["Fira Code", "ui-monospace", "monospace"],
+              mono: ["IBM Plex Mono", "monospace"],
               poppins: ["Poppins", "sans-serif"],
+              playfair: ["Playfair Display", "serif"],
+              montserrat: ["Montserrat", "sans-serif"],
+              archivo: ["Archivo", "sans-serif"],
+              quicksand: ["Quicksand", "sans-serif"],
+              lora: ["Lora", "serif"],
               crimson: ["Crimson Pro", "serif"],
-              oswald: ["Oswald", "sans-serif"],
-              garamond: ["EB Garamond", "serif"],
-              space: ["Space Grotesk", "sans-serif"],
-              boutique: ["Cormorant Garamond", "serif"],
             },
             colors: {
               brand: "#1e3a5f",
@@ -317,11 +318,7 @@
             <button onclick="setTemplate('editorial')" id="btn-tpl-editorial" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Edit</button>
             <button onclick="setTemplate('hacker')" id="btn-tpl-hacker" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Hacker</button>
             <button onclick="setTemplate('swiss')" id="btn-tpl-swiss" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Swiss</button>
-            <button onclick="setTemplate('academic')" id="btn-tpl-academic" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Acad</button>
-            <button onclick="setTemplate('architect')" id="btn-tpl-architect" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Arch</button>
-            <button onclick="setTemplate('newspaper')" id="btn-tpl-newspaper" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">News</button>
-            <button onclick="setTemplate('brutalist')" id="btn-tpl-brutalist" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Stark</button>
-            <button onclick="setTemplate('boutique')" id="btn-tpl-boutique" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Chic</button>
+            <button onclick="setTemplate('impact')" id="btn-tpl-impact" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Impact</button>
           </div>
         </div>
       </div>
@@ -518,11 +515,7 @@
           'editorial': 'Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700',
           'hacker': 'Fira+Code:wght@400;600;700',
           'swiss': 'Poppins:wght@300;400;600;700;800',
-          'academic': 'Crimson+Pro:ital,wght@0,400;0,600;0,700;1,400',
-          'architect': 'Oswald:wght@400;600;700',
-          'newspaper': 'EB+Garamond:ital,wght@0,400;0,500;0,700;0,800;1,400',
-          'brutalist': 'Space+Grotesk:wght@300;400;500;600;700',
-          'boutique': 'Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400'
+          'impact': 'Archivo+Black&family=Archivo:wght@400;500;700'
         };
 
         const families = fontMap[tpl] || fontMap['canva'];
@@ -536,7 +529,7 @@
         document.getElementById('btn-en').className = currentLang === 'en' ? 'px-3 py-1 rounded bg-brand text-white font-bold text-[9pt]' : 'px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[9pt]';
 
         // Update template buttons
-        const templates = ['canva', 'modern', 'classic', 'executive', 'developer', 'minimalist', 'timeline', 'editorial', 'hacker', 'swiss', 'academic', 'architect', 'newspaper', 'brutalist', 'boutique'];
+        const templates = ['canva', 'modern', 'classic', 'executive', 'developer', 'minimalist', 'timeline', 'editorial', 'hacker', 'swiss', 'impact'];
         templates.forEach(t => {
           const btn = document.getElementById(`btn-tpl-${t}`);
           if (btn) {
@@ -576,16 +569,8 @@
           container.innerHTML = renderHacker();
         } else if (currentTemplate === 'swiss') {
           container.innerHTML = renderSwiss();
-        } else if (currentTemplate === 'academic') {
-          container.innerHTML = renderAcademic();
-        } else if (currentTemplate === 'architect') {
-          container.innerHTML = renderArchitect();
-        } else if (currentTemplate === 'newspaper') {
-          container.innerHTML = renderNewspaper();
-        } else if (currentTemplate === 'brutalist') {
-          container.innerHTML = renderBrutalist();
-        } else if (currentTemplate === 'boutique') {
-          container.innerHTML = renderBoutique();
+        } else if (currentTemplate === 'impact') {
+          container.innerHTML = renderImpact();
         }
       }
       function getCommonData() {
@@ -1587,277 +1572,50 @@
         `;
       }
 
-      function renderAcademic() {
+      function renderImpact() {
         const { b } = getCommonData();
         return `
-          <div class="p-[15mm] flex flex-col h-full overflow-hidden text-[10pt] font-crimson bg-[#fffefc] text-[#1a1a1a]">
-            <header class="avoid-break text-center border-b border-neutral-300 pb-6 mb-8">
-              <h1 class="text-[28pt] font-bold leading-tight mb-2 tracking-tight">
-                ${b.name}
-              </h1>
-              <div class="text-[12pt] italic text-neutral-600 mb-4">
-                ${getText(b.label)}
-              </div>
-              <div class="flex justify-center items-center gap-6 text-[9pt] font-medium text-neutral-500">
-                <span>${b.email}</span>
-                <span class="text-neutral-300">|</span>
-                <span>${b.phone}</span>
-                <span class="text-neutral-300">|</span>
-                <span>${b.location.city}, ${b.location.countryCode}</span>
-              </div>
-            </header>
-
-            <div class="space-y-8 max-w-[170mm] mx-auto">
-              <section class="avoid-break text-justify leading-relaxed italic text-[11pt] text-neutral-700">
-                ${getText(b.summary)}
-              </section>
-
-              <section>
-                <h2 class="text-[12pt] font-bold uppercase tracking-[0.2em] text-neutral-800 border-b border-neutral-200 mb-4 pb-1">
-                  Professional Experience
-                </h2>
-                <div class="space-y-6">
-                  ${data.experience.map(exp => `
-                    <article class="avoid-break">
-                      <div class="flex justify-between items-baseline mb-1">
-                        <h3 class="text-[11.5pt] font-bold">${exp.company}</h3>
-                        <span class="text-[10pt] font-bold text-neutral-400 italic">${formatDates(exp.startDate, exp.endDate)}</span>
-                      </div>
-                      <div class="text-[10.5pt] font-semibold text-neutral-600 mb-2 italic">${getText(exp.position)}</div>
-                      <p class="text-[10pt] leading-relaxed text-neutral-800">
-                        ${getText(exp.description)}
-                      </p>
-                    </article>
-                  `).join('')}
-                </div>
-              </section>
-
-              <div class="grid grid-cols-2 gap-12">
-                <section class="avoid-break">
-                  <h2 class="text-[11pt] font-bold uppercase tracking-[0.2em] text-neutral-800 border-b border-neutral-200 mb-4 pb-1">
-                    Education
-                  </h2>
-                  <div class="space-y-4">
-                    ${data.education.map(edu => `
-                      <div>
-                        <div class="text-[10.5pt] font-bold">${edu.institution}</div>
-                        <div class="text-[9.5pt] italic text-neutral-600">${getText(edu.area)}</div>
-                        <div class="text-[9pt] text-neutral-400 mt-1">${edu.startDate} — ${edu.endDate}</div>
-                      </div>
-                    `).join('')}
-                  </div>
-                </section>
-
-                <section class="avoid-break">
-                  <h2 class="text-[11pt] font-bold uppercase tracking-[0.2em] text-neutral-800 border-b border-neutral-200 mb-4 pb-1">
-                    Core Competencies
-                  </h2>
-                  <div class="text-[10pt] leading-relaxed text-neutral-700">
-                    <span class="font-bold text-neutral-900">Technical:</span> ${data.skills.programming_languages.join(', ')}.
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderArchitect() {
-        const { b } = getCommonData();
-        return `
-          <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[9pt] font-sans bg-white text-neutral-900">
-            <div class="flex-1 flex flex-col">
-              <header class="avoid-break flex items-start gap-12 mb-12">
-                <div class="w-24 pt-2">
-                  <div class="font-oswald text-[10pt] font-bold uppercase tracking-widest text-brand leading-none rotate-180 [writing-mode:vertical-lr] text-right">
-                    Curriculum Vitae
-                  </div>
-                </div>
-                <div class="flex-1">
-                  <h1 class="font-oswald text-[42pt] font-bold leading-[0.9] tracking-tighter text-neutral-900 uppercase">
-                    ${b.name}
+          <div class="p-[8mm] flex flex-col h-full overflow-hidden text-[9.5pt] font-sans bg-[#000] text-[#fff]">
+            <div class="flex-1 border-[1px] border-neutral-800 p-8 flex flex-col relative overflow-hidden">
+              <div class="absolute top-0 right-0 w-64 h-64 bg-brand opacity-10 blur-[100px]"></div>
+              
+              <header class="avoid-break mb-12 relative z-10">
+                <div class="flex items-baseline gap-4 mb-2">
+                  <h1 class="font-archivo text-[54pt] font-black leading-none tracking-tight uppercase">
+                    ${b.name.split(' ')[0]}<span class="text-brand">.</span>
                   </h1>
-                  <div class="mt-4 font-oswald text-[14pt] font-normal tracking-[0.3em] uppercase text-neutral-400">
-                    ${getText(b.label)}
+                  <div class="h-1 flex-1 bg-neutral-900"></div>
+                </div>
+                <div class="flex justify-between items-center">
+                  <div class="font-archivo text-[14pt] font-bold text-neutral-400 uppercase tracking-[0.2em]">${getText(b.label)}</div>
+                  <div class="flex gap-4 text-[8pt] font-bold text-neutral-500 uppercase">
+                    <span>${b.email}</span>
+                    <span class="text-brand">/</span>
+                    <span>${b.phone}</span>
                   </div>
                 </div>
               </header>
 
-              <div class="grid grid-cols-12 gap-0 flex-1 border-t border-neutral-900">
-                <aside class="col-span-3 pt-8 pr-8 space-y-12">
+              <div class="grid grid-cols-12 gap-12 flex-1 relative z-10">
+                <div class="col-span-8 space-y-12">
                   <section class="avoid-break">
-                    <h2 class="font-oswald text-[10pt] font-bold uppercase tracking-widest text-brand mb-4">Contact</h2>
-                    <div class="space-y-2 text-[8pt] font-medium text-neutral-500 uppercase">
-                      <div>${b.email}</div>
-                      <div>${b.phone}</div>
-                      <div>${b.location.city}</div>
-                    </div>
-                  </section>
-                  <section class="avoid-break">
-                    <h2 class="font-oswald text-[10pt] font-bold uppercase tracking-widest text-brand mb-4">Focus</h2>
-                    <p class="text-[8.5pt] leading-relaxed font-medium text-neutral-600">
-                      ${getText(b.summary)}
-                    </p>
-                  </section>
-                  <section class="avoid-break">
-                    <h2 class="font-oswald text-[10pt] font-bold uppercase tracking-widest text-brand mb-4">Skills</h2>
-                    <div class="flex flex-col gap-1 text-[8.5pt] font-bold text-neutral-900 uppercase">
-                      ${data.skills.programming_languages.slice(0, 8).map(s => `<div>${s}</div>`).join('')}
-                    </div>
-                  </section>
-                </aside>
-
-                <main class="col-span-9 pt-8 pl-12 border-l border-neutral-900">
-                  <section>
-                    <h2 class="font-oswald text-[10pt] font-bold uppercase tracking-widest text-brand mb-8">Selected Experience</h2>
-                    <div class="space-y-10">
-                      ${data.experience.map(exp => `
-                        <article class="avoid-break grid grid-cols-[120px_1fr] gap-8">
-                          <div class="font-oswald text-[9pt] font-bold text-neutral-400 pt-1 tracking-wider uppercase">
-                            ${formatDates(exp.startDate, exp.endDate)}
-                          </div>
-                          <div>
-                            <h3 class="font-oswald text-[12pt] font-bold text-neutral-900 uppercase mb-1 leading-none">${exp.company}</h3>
-                            <div class="text-[9.5pt] font-bold text-brand uppercase tracking-tighter mb-3">${getText(exp.position)}</div>
-                            <p class="text-[9pt] leading-relaxed text-neutral-600 font-medium">
-                              ${getText(exp.description)}
-                            </p>
-                          </div>
-                        </article>
-                      `).join('')}
-                    </div>
-                  </section>
-                </main>
-              </div>
-            </div>
-          </div>
-        `;
-      }
-
-      function renderNewspaper() {
-        const { b } = getCommonData();
-        return `
-          <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[9pt] font-garamond bg-[#f4f1ea] text-[#222]">
-            <header class="avoid-break border-b-4 border-black pb-4 mb-6">
-              <div class="text-center mb-4">
-                <div class="text-[10pt] font-bold uppercase tracking-[0.3em] border-b border-black inline-block px-8 mb-2">The Professional Profile</div>
-                <h1 class="text-[40pt] font-[800] leading-none tracking-tighter uppercase font-garamond italic">
-                  ${b.name}
-                </h1>
-              </div>
-              <div class="grid grid-cols-3 border-t border-black pt-2 text-[8pt] font-bold uppercase tracking-widest text-center">
-                <div>${b.location.city}, ${b.location.countryCode}</div>
-                <div class="border-x border-black/20">${b.email}</div>
-                <div>${b.phone}</div>
-              </div>
-            </header>
-
-            <div class="grid grid-cols-12 gap-8 flex-1">
-              <div class="col-span-12">
-                <section class="avoid-break mb-8 text-justify columns-2 gap-8 border-b border-black pb-8">
-                  <span class="text-[32pt] font-black float-left leading-[0.8] mr-2 mt-1">${getText(b.summary)[0]}</span>
-                  ${getText(b.summary).substring(1)}
-                </section>
-              </div>
-
-              <div class="col-span-8 space-y-8">
-                <section>
-                  <h2 class="text-[14pt] font-black uppercase border-b-2 border-black mb-4">Chronicle of Experience</h2>
-                  <div class="space-y-6">
-                    ${data.experience.map(exp => `
-                      <article class="avoid-break border-b border-black/10 pb-4">
-                        <div class="flex justify-between items-baseline mb-1">
-                          <h3 class="text-[12pt] font-black">${exp.company}</h3>
-                          <span class="text-[8pt] font-bold uppercase italic">${formatDates(exp.startDate, exp.endDate)}</span>
-                        </div>
-                        <div class="text-[10pt] font-bold text-neutral-600 mb-2 italic">${getText(exp.position)}</div>
-                        <p class="text-[9.5pt] leading-relaxed text-justify">
-                          ${getText(exp.description)}
-                        </p>
-                      </article>
-                    `).join('')}
-                  </div>
-                </section>
-              </div>
-
-              <div class="col-span-4 space-y-8 border-l border-black/10 pl-8">
-                <section class="avoid-break">
-                  <h2 class="text-[12pt] font-black uppercase border-b-2 border-black mb-4">Academic Record</h2>
-                  <div class="space-y-4">
-                    ${data.education.map(edu => `
-                      <div>
-                        <div class="text-[10pt] font-black">${edu.institution}</div>
-                        <div class="text-[9pt] italic">${getText(edu.area)}</div>
-                        <div class="text-[8pt] font-bold text-neutral-400 mt-1">${edu.startDate} — ${edu.endDate}</div>
-                      </div>
-                    `).join('')}
-                  </div>
-                </section>
-
-                <section class="avoid-break">
-                  <h2 class="text-[12pt] font-black uppercase border-b-2 border-black mb-4">Expertise</h2>
-                  <div class="grid grid-cols-1 gap-2">
-                    ${data.skills.programming_languages.slice(0, 10).map(s => `
-                      <div class="flex justify-between items-center text-[8.5pt]">
-                        <span class="font-black uppercase">${s}</span>
-                        <div class="flex-1 border-b border-dotted border-black/20 mx-2"></div>
-                        <span class="italic text-neutral-400">Expert</span>
-                      </div>
-                    `).join('')}
-                  </div>
-                </section>
-              </div>
-            </div>
-            <footer class="mt-auto border-t-2 border-black pt-2 flex justify-between text-[7pt] font-bold uppercase tracking-tighter">
-              <span>Section A — Page 1</span>
-              <span>All rights reserved © ${new Date().getFullYear()}</span>
-              <span>${b.name.toUpperCase()} CV</span>
-            </footer>
-          </div>
-        `;
-      }
-
-      function renderBrutalist() {
-        const { b } = getCommonData();
-        return `
-          <div class="p-[8mm] flex flex-col h-full overflow-hidden text-[9pt] font-space bg-white text-black">
-            <div class="border-[6px] border-black p-6 flex-1 flex flex-col">
-              <header class="avoid-break flex justify-between items-start mb-8 bg-black text-white p-6 -m-6 mb-8">
-                <div>
-                  <h1 class="text-[38pt] font-black leading-[0.8] tracking-tight uppercase">
-                    ${b.name.split(' ').join('<br>')}
-                  </h1>
-                  <div class="mt-4 text-[14pt] font-bold bg-white text-black px-2 inline-block">
-                    ${getText(b.label)}
-                  </div>
-                </div>
-                <div class="text-right text-[9pt] font-bold space-y-1 uppercase">
-                  <div class="bg-white text-black px-1">${b.email}</div>
-                  <div class="bg-white text-black px-1">${b.phone}</div>
-                  <div class="bg-white text-black px-1">${b.location.city}</div>
-                </div>
-              </header>
-
-              <div class="grid grid-cols-12 gap-0 flex-1 border-t-4 border-black">
-                <div class="col-span-8 border-r-4 border-black p-8 pl-0">
-                  <section class="avoid-break mb-12">
-                    <h2 class="text-[18pt] font-black uppercase mb-4 bg-black text-white px-4 py-1 inline-block">Overview</h2>
-                    <p class="text-[11pt] leading-tight font-bold">
+                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-6">Introduction</h2>
+                    <p class="text-[12pt] leading-snug font-medium text-neutral-300">
                       ${getText(b.summary)}
                     </p>
                   </section>
 
                   <section>
-                    <h2 class="text-[18pt] font-black uppercase mb-8 bg-black text-white px-4 py-1 inline-block">History</h2>
+                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-8">Selected Works</h2>
                     <div class="space-y-10">
                       ${data.experience.map(exp => `
-                        <article class="avoid-break border-b-4 border-black pb-6 last:border-0">
-                          <div class="flex justify-between items-start mb-2">
-                            <h3 class="text-[14pt] font-black uppercase leading-none">${exp.company}</h3>
-                            <span class="text-[10pt] font-black bg-black text-white px-2">${exp.startDate} > ${exp.endDate.includes('2025') ? 'NOW' : exp.endDate}</span>
+                        <article class="avoid-break group">
+                          <div class="flex justify-between items-baseline mb-3">
+                            <h3 class="text-[16pt] font-black uppercase text-white group-hover:text-brand transition-colors">${exp.company}</h3>
+                            <span class="text-[9pt] font-bold text-neutral-600 tabular-nums">${exp.startDate} — ${exp.endDate}</span>
                           </div>
-                          <div class="text-[11pt] font-bold mb-4 uppercase tracking-tighter text-neutral-400"># ${getText(exp.position)}</div>
-                          <p class="text-[10pt] font-medium leading-none">
+                          <div class="inline-block px-2 py-0.5 bg-neutral-900 text-neutral-400 text-[8pt] font-bold uppercase mb-4 tracking-widest">${getText(exp.position)}</div>
+                          <p class="text-[10pt] leading-relaxed text-neutral-400">
                             ${getText(exp.description)}
                           </p>
                         </article>
@@ -1866,119 +1624,40 @@
                   </section>
                 </div>
 
-                <div class="col-span-4 p-8 pr-0 space-y-12">
+                <div class="col-span-4 space-y-12">
                   <section class="avoid-break">
-                    <h2 class="text-[14pt] font-black uppercase mb-4 border-b-4 border-black w-full">Skills</h2>
-                    <div class="flex flex-wrap gap-2">
-                      ${data.skills.programming_languages.map(s => `<span class="border-2 border-black px-2 py-0.5 font-black uppercase text-[8pt]">${s}</span>`).join('')}
-                    </div>
-                  </section>
-
-                  <section class="avoid-break">
-                    <h2 class="text-[14pt] font-black uppercase mb-4 border-b-4 border-black w-full">Learning</h2>
-                    <div class="space-y-6">
-                      ${data.education.slice(0, 3).map(edu => `
-                        <div>
-                          <div class="text-[10pt] font-black uppercase leading-tight">${edu.institution}</div>
-                          <div class="text-[8pt] font-bold text-neutral-400 mt-1">${edu.startDate}</div>
+                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-6">Expertise</h2>
+                    <div class="flex flex-col gap-2">
+                      ${data.skills.programming_languages.slice(0, 10).map(s => `
+                        <div class="flex items-center gap-3">
+                          <div class="w-2 h-2 bg-brand"></div>
+                          <span class="text-[10pt] font-bold text-white uppercase">${s}</span>
                         </div>
                       `).join('')}
                     </div>
                   </section>
 
-                  <div class="mt-auto pt-12">
-                    <div class="text-[32pt] font-black leading-none opacity-10 uppercase select-none">
-                      Verified<br>Profile
+                  <section class="avoid-break">
+                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-6">Academic</h2>
+                    <div class="space-y-6">
+                      ${data.education.map(edu => `
+                        <div>
+                          <div class="text-[11pt] font-black text-white uppercase leading-tight">${edu.institution}</div>
+                          <div class="text-[9pt] font-bold text-neutral-500 mt-1 italic">${getText(edu.area)}</div>
+                          <div class="text-[8pt] font-bold text-neutral-700 mt-2 tracking-widest">${edu.startDate}</div>
+                        </div>
+                      `).join('')}
+                    </div>
+                  </section>
+
+                  <div class="mt-auto pt-12 text-right">
+                    <div class="text-[40pt] font-black leading-none text-neutral-900 uppercase italic select-none">
+                      Impact<br>Driven
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
-        `;
-      }
-
-      function renderBoutique() {
-        const { b, photoSrc } = getCommonData();
-        return `
-          <div class="p-[15mm] flex flex-col h-full overflow-hidden text-[9.5pt] font-boutique bg-[#fcfcfc] text-[#333]">
-            <header class="avoid-break text-center mb-16 relative">
-              <div class="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-px bg-neutral-200 -mt-8"></div>
-              <h1 class="text-[34pt] font-[300] tracking-[0.2em] text-neutral-800 uppercase mb-4">
-                ${b.name.split(' ').join(' <span class="font-semibold">/</span> ')}
-              </h1>
-              <div class="text-[10pt] tracking-[0.4em] uppercase text-neutral-400 font-light mb-8">
-                ${getText(b.label)}
-              </div>
-              <div class="flex justify-center items-center gap-8 text-[8.5pt] tracking-widest text-neutral-500 font-sans font-light border-y border-neutral-100 py-3">
-                <span>${b.email}</span>
-                <span class="w-1 h-1 bg-neutral-200 rounded-full"></span>
-                <span>${b.phone}</span>
-                <span class="w-1 h-1 bg-neutral-200 rounded-full"></span>
-                <span>${b.location.city.toUpperCase()}</span>
-              </div>
-            </header>
-
-            <div class="flex-1 grid grid-cols-12 gap-16">
-              <div class="col-span-7 space-y-12">
-                <section class="avoid-break">
-                  <div class="text-[8pt] tracking-[0.5em] uppercase text-neutral-300 font-bold mb-6">Introduction</div>
-                  <p class="text-[11pt] leading-relaxed font-light text-neutral-600 first-letter:text-4xl first-letter:font-bold first-letter:mr-1 first-letter:float-left">
-                    ${getText(b.summary)}
-                  </p>
-                </section>
-
-                <section>
-                  <div class="text-[8pt] tracking-[0.5em] uppercase text-neutral-300 font-bold mb-8">Career Path</div>
-                  <div class="space-y-10">
-                    ${data.experience.map(exp => `
-                      <article class="avoid-break">
-                        <div class="flex justify-between items-baseline mb-2">
-                          <h3 class="text-[12pt] font-semibold text-neutral-800">${exp.company}</h3>
-                          <span class="text-[8pt] tracking-widest text-neutral-400 uppercase font-sans">${exp.startDate.split('-')[0]} // ${exp.endDate.includes('2025') ? 'PR' : exp.endDate.split('-')[0]}</span>
-                        </div>
-                        <div class="text-[9pt] tracking-[0.1em] uppercase text-neutral-500 font-light mb-4">${getText(exp.position)}</div>
-                        <p class="text-[9pt] leading-relaxed text-neutral-500 font-light">
-                          ${getText(exp.description)}
-                        </p>
-                      </article>
-                    `).join('')}
-                  </div>
-                </section>
-              </div>
-
-              <aside class="col-span-5 space-y-16">
-                <div class="avoid-break flex justify-center mb-8">
-                  <div class="w-32 h-40 border border-neutral-100 p-2 bg-white shadow-sm grayscale opacity-80">
-                    <img src="${photoSrc}" class="w-full h-full object-cover">
-                  </div>
-                </div>
-
-                <section class="avoid-break">
-                  <div class="text-[8pt] tracking-[0.5em] uppercase text-neutral-300 font-bold mb-6 text-right">Expertise</div>
-                  <div class="flex flex-col gap-3 text-right">
-                    ${data.skills.programming_languages.slice(0, 6).map(s => `
-                      <div class="text-[9.5pt] font-light tracking-widest text-neutral-600 uppercase italic">${s}</div>
-                    `).join('')}
-                  </div>
-                </section>
-
-                <section class="avoid-break">
-                  <div class="text-[8pt] tracking-[0.5em] uppercase text-neutral-300 font-bold mb-6 text-right">Education</div>
-                  <div class="space-y-6 text-right">
-                    ${data.education.slice(0, 2).map(edu => `
-                      <div>
-                        <div class="text-[10pt] font-semibold text-neutral-700">${edu.institution}</div>
-                        <div class="text-[8.5pt] text-neutral-400 italic">${getText(edu.area)}</div>
-                      </div>
-                    `).join('')}
-                  </div>
-                </section>
-              </aside>
-            </div>
-            <footer class="mt-auto text-center pt-16">
-              <div class="inline-block w-8 h-px bg-neutral-200"></div>
-            </footer>
           </div>
         `;
       }
