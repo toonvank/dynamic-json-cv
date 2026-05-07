@@ -22,12 +22,10 @@
               serif: ["Playfair Display", "serif"],
               mono: ["IBM Plex Mono", "monospace"],
               poppins: ["Poppins", "sans-serif"],
-              playfair: ["Playfair Display", "serif"],
               montserrat: ["Montserrat", "sans-serif"],
-              archivo: ["Archivo", "sans-serif"],
-              quicksand: ["Quicksand", "sans-serif"],
-              lora: ["Lora", "serif"],
+              outfit: ["Outfit", "sans-serif"],
               crimson: ["Crimson Pro", "serif"],
+              playfair: ["Playfair Display", "serif"],
             },
             colors: {
               brand: "#1e3a5f",
@@ -318,7 +316,9 @@
             <button onclick="setTemplate('editorial')" id="btn-tpl-editorial" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Edit</button>
             <button onclick="setTemplate('hacker')" id="btn-tpl-hacker" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Hacker</button>
             <button onclick="setTemplate('swiss')" id="btn-tpl-swiss" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Swiss</button>
-            <button onclick="setTemplate('impact')" id="btn-tpl-impact" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Impact</button>
+            <button onclick="setTemplate('slate')" id="btn-tpl-slate" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Slate</button>
+            <button onclick="setTemplate('maven')" id="btn-tpl-maven" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Maven</button>
+            <button onclick="setTemplate('apex')" id="btn-tpl-apex" class="px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]">Apex</button>
           </div>
         </div>
       </div>
@@ -515,7 +515,9 @@
           'editorial': 'Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700',
           'hacker': 'Fira+Code:wght@400;600;700',
           'swiss': 'Poppins:wght@300;400;600;700;800',
-          'impact': 'Archivo+Black&family=Archivo:wght@400;500;700'
+          'slate': 'Inter:wght@300;400;600;700&family=Playfair+Display:ital,wght@0,700;1,700',
+          'maven': 'Montserrat:wght@400;600;700;800&family=Crimson+Pro:ital,wght@0,400;1,400',
+          'apex': 'Outfit:wght@300;400;600;700;800&family=IBM+Plex+Mono:wght@400;500'
         };
 
         const families = fontMap[tpl] || fontMap['canva'];
@@ -529,7 +531,7 @@
         document.getElementById('btn-en').className = currentLang === 'en' ? 'px-3 py-1 rounded bg-brand text-white font-bold text-[9pt]' : 'px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[9pt]';
 
         // Update template buttons
-        const templates = ['canva', 'modern', 'classic', 'executive', 'developer', 'minimalist', 'timeline', 'editorial', 'hacker', 'swiss', 'impact'];
+        const templates = ['canva', 'modern', 'classic', 'executive', 'developer', 'minimalist', 'timeline', 'editorial', 'hacker', 'swiss', 'slate', 'maven', 'apex'];
         templates.forEach(t => {
           const btn = document.getElementById(`btn-tpl-${t}`);
           if (btn) {
@@ -569,8 +571,12 @@
           container.innerHTML = renderHacker();
         } else if (currentTemplate === 'swiss') {
           container.innerHTML = renderSwiss();
-        } else if (currentTemplate === 'impact') {
-          container.innerHTML = renderImpact();
+        } else if (currentTemplate === 'slate') {
+          container.innerHTML = renderSlate();
+        } else if (currentTemplate === 'maven') {
+          container.innerHTML = renderMaven();
+        } else if (currentTemplate === 'apex') {
+          container.innerHTML = renderApex();
         }
       }
       function getCommonData() {
@@ -754,8 +760,7 @@
                       <div class="space-y-1">
                         ${data.skills.languages.map(l => `
                           <div class="flex justify-between text-[8pt]">
-                            <span>${l.language}</span>
-                            <span class="opacity-60 text-[7pt]">${l.fluency.split(' ')[0]}</span>
+                            <span>${getText(l.language)}</span>
                           </div>
                         `).join('')}
                       </div>
@@ -818,6 +823,7 @@
               </section>
 
               <!-- Projects -->
+              ${data.projects && data.projects.length > 0 ? `
               <section class="mb-[6mm]">
                 <div class="section-title px-3 py-1 bg-neutral-50 border-none mb-[3mm]">
                   <h2 class="font-heading text-[10pt] font-bold tracking-[0.15em] uppercase text-brand">
@@ -835,6 +841,7 @@
                   `).join('')}
                 </div>
               </section>
+              ` : ''}
 
               <!-- References -->
               <section class="avoid-break">
@@ -873,7 +880,7 @@
       }
 
       function renderClassic() {
-        const { b } = getCommonData();
+        const { b, photoSrc } = getCommonData();
         return `
           <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[9.5pt]">
             <!-- Header -->
@@ -959,7 +966,7 @@
                     <div>
                       <div class="text-[8pt] uppercase tracking-wider text-neutral-400 font-sans mb-1">${currentLang === 'nl' ? 'Talen' : 'Languages'}</div>
                       <div class="text-[9pt] text-neutral-700">
-                        ${data.skills.languages.map(l => `${l.language} (${l.fluency.split(' ')[0]})`).join(', ')}
+                        ${data.skills.languages.map(l => getText(l.language)).join(', ')}
                       </div>
                     </div>
                   </div>
@@ -1113,6 +1120,8 @@
                   </div>
                 </section>
 
+                <!-- Projects -->
+                ${data.projects && data.projects.length > 0 ? `
                 <section class="avoid-break">
                   <h2 class="font-heading text-[10pt] font-bold tracking-[0.1em] uppercase text-brand mb-[3mm] border-l-4 border-brand pl-3">
                     ${currentLang === 'nl' ? 'Projecten' : 'Projects'}
@@ -1126,7 +1135,7 @@
                     `).join('')}
                   </div>
                 </section>
-              </div>
+                ` : ''}              </div>
             </section>
 
             <!-- Sidebar (30%) -->
@@ -1185,10 +1194,15 @@
       }
 
       function renderMinimalist() {
-        const { b } = getCommonData();
+        const { b, photoSrc } = getCommonData();
         return `
           <div class="p-[8mm] flex flex-col h-full overflow-hidden text-[9pt] bg-white">
             <header class="avoid-break text-center mb-[6mm]">
+              <div class="flex justify-center mb-4">
+                <div class="w-20 h-20 rounded-full overflow-hidden border border-neutral-100">
+                  <img src="${photoSrc}" class="w-full h-full object-cover">
+                </div>
+              </div>
               <h1 class="font-heading text-[26pt] font-light tracking-tighter text-neutral-900 uppercase">
                 ${b.name.split(' ').map((n, i) => i === b.name.split(' ').length - 1 ? `<span class="font-bold">${n}</span>` : n).join(' ')}
               </h1>
@@ -1264,16 +1278,21 @@
       }
 
       function renderTimeline() {
-        const { b } = getCommonData();
+        const { b, photoSrc } = getCommonData();
         return `
           <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[9.5pt] bg-white">
             <header class="avoid-break flex justify-between items-end mb-[8mm] border-b-4 border-neutral-900 pb-4">
-              <div>
-                <h1 class="font-heading text-[28pt] font-black leading-none text-neutral-900 uppercase">
-                  ${b.name}
-                </h1>
-                <div class="mt-[2mm] text-[12pt] font-bold text-brand uppercase tracking-tighter">
-                  ${getText(b.label)}
+              <div class="flex items-end gap-6">
+                <div class="w-20 h-20 rounded-full overflow-hidden border-2 border-neutral-900 shadow-sm">
+                  <img src="${photoSrc}" class="w-full h-full object-cover">
+                </div>
+                <div>
+                  <h1 class="font-heading text-[28pt] font-black leading-none text-neutral-900 uppercase">
+                    ${b.name}
+                  </h1>
+                  <div class="mt-[2mm] text-[12pt] font-bold text-brand uppercase tracking-tighter">
+                    ${getText(b.label)}
+                  </div>
                 </div>
               </div>
               <div class="text-right text-[8.5pt] leading-tight font-sans text-neutral-500 font-medium">
@@ -1345,17 +1364,22 @@
       }
 
       function renderEditorial() {
-        const { b } = getCommonData();
+        const { b, photoSrc } = getCommonData();
         return `
           <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[9.5pt] font-serif bg-[#fdfdfd] text-neutral-900">
             <header class="avoid-break border-b-2 border-neutral-900 pb-[6mm] mb-[8mm]">
               <div class="flex justify-between items-end">
-                <div class="flex-1">
-                  <h1 class="text-[32pt] font-black leading-[0.9] tracking-tighter uppercase mb-2">
-                    ${b.name}
-                  </h1>
-                  <div class="text-[14pt] font-bold text-neutral-500 italic">
-                    ${getText(b.label)}
+                <div class="flex items-end gap-8">
+                  <div class="w-24 h-24 bg-neutral-900 p-1">
+                    <img src="${photoSrc}" class="w-full h-full object-cover grayscale">
+                  </div>
+                  <div class="flex-1">
+                    <h1 class="text-[32pt] font-black leading-[0.9] tracking-tighter uppercase mb-2">
+                      ${b.name}
+                    </h1>
+                    <div class="text-[14pt] font-bold text-neutral-500 italic">
+                      ${getText(b.label)}
+                    </div>
                   </div>
                 </div>
                 <div class="text-right text-[8.5pt] space-y-1 font-sans font-bold uppercase tracking-widest text-neutral-400">
@@ -1431,18 +1455,23 @@
       }
 
       function renderHacker() {
-        const { b } = getCommonData();
+        const { b, photoSrc } = getCommonData();
         return `
           <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[9pt] font-mono bg-[#0f172a] text-slate-300">
             <header class="avoid-break border border-slate-700 p-6 mb-8 bg-[#1e293b] relative overflow-hidden">
               <div class="absolute top-0 left-0 w-1 h-full bg-emerald-500"></div>
-              <div class="flex justify-between items-start relative z-10">
-                <div>
-                  <h1 class="text-[24pt] font-bold text-emerald-400 leading-none mb-2 tracking-tight">
-                    <span class="text-slate-500 opacity-50">&lt;</span>${b.name.replace(' ', '')}<span class="text-slate-500 opacity-50"> /&gt;</span>
-                  </h1>
-                  <div class="text-[10pt] text-slate-400 font-medium">
-                    const role = "${getText(b.label)}";
+              <div class="flex justify-between items-center relative z-10">
+                <div class="flex items-center gap-6">
+                  <div class="w-20 h-20 rounded border border-slate-600 overflow-hidden">
+                    <img src="${photoSrc}" class="w-full h-full object-cover grayscale opacity-80">
+                  </div>
+                  <div>
+                    <h1 class="text-[24pt] font-bold text-emerald-400 leading-none mb-2 tracking-tight">
+                      <span class="text-slate-500 opacity-50">&lt;</span>${b.name.replace(' ', '')}<span class="text-slate-500 opacity-50"> /&gt;</span>
+                    </h1>
+                    <div class="text-[10pt] text-slate-400 font-medium">
+                      const role = "${getText(b.label)}";
+                    </div>
                   </div>
                 </div>
                 <div class="text-right text-[8pt] space-y-1 text-slate-500">
@@ -1508,18 +1537,23 @@
             </div>
 
             <footer class="mt-auto pt-8 text-[7pt] text-slate-600 text-center uppercase tracking-widest">
-              Generated by dynamic-json-cv-engine // v2.4.0
+              ${b.name.toUpperCase()} // SYS_LOG_OUTPUT
             </footer>
           </div>
         `;
       }
 
       function renderSwiss() {
-        const { b } = getCommonData();
+        const { b, photoSrc } = getCommonData();
         return `
           <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[9pt] font-poppins bg-white text-neutral-900">
             <header class="avoid-break grid grid-cols-12 gap-0 border-b-8 border-neutral-900 pb-6 mb-8">
-              <div class="col-span-8">
+              <div class="col-span-2">
+                <div class="w-20 h-20 bg-neutral-900 p-0.5">
+                  <img src="${photoSrc}" class="w-full h-full object-cover grayscale">
+                </div>
+              </div>
+              <div class="col-span-6">
                 <h1 class="text-[36pt] font-[800] leading-[0.85] tracking-tighter uppercase">
                   ${b.name.split(' ').join('<br>')}
                 </h1>
@@ -1572,50 +1606,215 @@
         `;
       }
 
-      function renderImpact() {
-        const { b } = getCommonData();
+      function renderSlate() {
+        const { b, photoSrc } = getCommonData();
         return `
-          <div class="p-[8mm] flex flex-col h-full overflow-hidden text-[9.5pt] font-sans bg-[#000] text-[#fff]">
-            <div class="flex-1 border-[1px] border-neutral-800 p-8 flex flex-col relative overflow-hidden">
-              <div class="absolute top-0 right-0 w-64 h-64 bg-brand opacity-10 blur-[100px]"></div>
-              
-              <header class="avoid-break mb-12 relative z-10">
-                <div class="flex items-baseline gap-4 mb-2">
-                  <h1 class="font-archivo text-[54pt] font-black leading-none tracking-tight uppercase">
-                    ${b.name.split(' ')[0]}<span class="text-brand">.</span>
-                  </h1>
-                  <div class="h-1 flex-1 bg-neutral-900"></div>
+          <div class="p-[8mm] flex flex-col h-full overflow-hidden text-[8.5pt] font-sans bg-white text-slate-800">
+            <header class="avoid-break grid grid-cols-12 gap-0 border-b-2 border-slate-100 pb-6 mb-6">
+              <div class="col-span-2">
+                <div class="w-20 h-20 rounded-lg overflow-hidden border border-slate-100">
+                  <img src="${photoSrc}" class="w-full h-full object-cover">
                 </div>
-                <div class="flex justify-between items-center">
-                  <div class="font-archivo text-[14pt] font-bold text-neutral-400 uppercase tracking-[0.2em]">${getText(b.label)}</div>
-                  <div class="flex gap-4 text-[8pt] font-bold text-neutral-500 uppercase">
-                    <span>${b.email}</span>
-                    <span class="text-brand">/</span>
-                    <span>${b.phone}</span>
+              </div>
+              <div class="col-span-6">
+                <h1 class="text-[28pt] font-black leading-tight text-slate-900 uppercase tracking-tighter">
+                  ${b.name}
+                </h1>
+                <div class="text-[11pt] font-bold text-brand uppercase tracking-[0.2em] mt-1">${getText(b.label)}</div>
+              </div>
+              <div class="col-span-4 flex flex-col justify-end text-right space-y-1 text-[8pt] font-semibold text-slate-400">
+                <div>${b.email}</div>
+                <div>${b.phone}</div>
+                <div>${b.location.city}, ${b.location.countryCode}</div>
+              </div>
+            </header>
+
+            <div class="grid grid-cols-12 gap-8 flex-1">
+              <aside class="col-span-4 space-y-6">
+                <section class="avoid-break">
+                  <h2 class="text-[9pt] font-black uppercase tracking-widest text-slate-900 border-l-4 border-brand pl-3 mb-3">Overview</h2>
+                  <p class="leading-relaxed text-slate-500 font-medium">
+                    ${getText(b.summary)}
+                  </p>
+                </section>
+
+                <section class="avoid-break">
+                  <h2 class="text-[9pt] font-black uppercase tracking-widest text-slate-900 border-l-4 border-brand pl-3 mb-3">Expertise</h2>
+                  <div class="flex flex-wrap gap-1.5">
+                    ${data.skills.programming_languages.slice(0, 12).map(s => `
+                      <span class="px-2 py-0.5 bg-slate-50 text-slate-600 font-bold border border-slate-100 rounded text-[7.5pt]">${s}</span>
+                    `).join('')}
                   </div>
+                </section>
+
+                <section class="avoid-break">
+                  <h2 class="text-[9pt] font-black uppercase tracking-widest text-slate-900 border-l-4 border-brand pl-3 mb-3">Learning</h2>
+                  <div class="space-y-4">
+                    ${data.education.map(edu => `
+                      <div>
+                        <div class="font-bold text-slate-800 leading-tight uppercase text-[8pt]">${edu.institution}</div>
+                        <div class="text-slate-400 italic mt-0.5 text-[7.5pt]">${getText(edu.area)}</div>
+                        <div class="text-slate-300 font-bold mt-1 text-[7pt] uppercase">${edu.startDate} — ${edu.endDate}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </section>
+              </aside>
+
+              <main class="col-span-8 space-y-6">
+                <section>
+                  <h2 class="text-[9pt] font-black uppercase tracking-widest text-slate-900 border-l-4 border-brand pl-3 mb-4">Experience</h2>
+                  <div class="space-y-6">
+                    ${data.experience.map(exp => `
+                      <article class="avoid-break group">
+                        <div class="flex justify-between items-baseline mb-1">
+                          <h3 class="text-[10pt] font-black text-slate-900 uppercase">${exp.company}</h3>
+                          <span class="text-[7.5pt] font-bold text-slate-300 uppercase">${formatDates(exp.startDate, exp.endDate)}</span>
+                        </div>
+                        <div class="text-[8.5pt] font-bold text-brand uppercase tracking-tighter mb-2">${getText(exp.position)}</div>
+                        <p class="leading-snug text-slate-500 font-medium">
+                          ${getText(exp.description)}
+                        </p>
+                      </article>
+                    `).join('')}
+                  </div>
+                </section>
+              </main>
+            </div>
+            
+            <footer class="mt-auto pt-6 flex justify-between text-[7pt] font-bold text-slate-200 uppercase tracking-widest">
+              <span>${b.name.toUpperCase()} // CV</span>
+              <span>${new Date().toLocaleDateString()}</span>
+            </footer>
+          </div>
+        `;
+      }
+
+      function renderMaven() {
+        const { b, photoSrc } = getCommonData();
+        return `
+          <div class="p-[10mm] flex flex-col h-full overflow-hidden text-[8.5pt] font-sans bg-[#fcfcfc] text-neutral-800">
+            <header class="avoid-break flex items-center gap-8 border-b border-neutral-200 pb-8 mb-8">
+              <div class="w-20 h-20 rounded-xl overflow-hidden shadow-sm border border-neutral-100">
+                <img src="${photoSrc}" class="w-full h-full object-cover">
+              </div>
+              <div class="flex-1">
+                <h1 class="font-montserrat text-[24pt] font-extrabold leading-none text-neutral-900 uppercase tracking-tight">
+                  ${b.name}
+                </h1>
+                <div class="text-[10pt] font-bold text-neutral-400 uppercase tracking-[0.3em] mt-1">${getText(b.label)}</div>
+              </div>
+              <div class="text-right text-[8pt] font-bold space-y-1 text-neutral-500 uppercase">
+                <div>${b.email}</div>
+                <div>${b.phone}</div>
+                <div>${b.location.city}</div>
+              </div>
+            </header>
+
+            <div class="space-y-8 flex-1">
+              <section class="avoid-break bg-neutral-50 p-4 rounded-lg border border-neutral-100">
+                <p class="text-[10pt] leading-relaxed text-neutral-600 font-medium text-center italic">
+                  "${getText(b.summary)}"
+                </p>
+              </section>
+
+              <section>
+                <h2 class="font-montserrat text-[10pt] font-black uppercase text-neutral-900 mb-6 flex items-center gap-3">
+                  <span>Professional Experience</span>
+                  <span class="flex-1 h-px bg-neutral-200"></span>
+                </h2>
+                <div class="space-y-6">
+                  ${data.experience.map(exp => `
+                    <article class="avoid-break grid grid-cols-12 gap-4">
+                      <div class="col-span-3 text-[8pt] font-black text-neutral-300 uppercase pt-0.5">
+                        ${formatDates(exp.startDate, exp.endDate)}
+                      </div>
+                      <div class="col-span-9">
+                        <div class="flex items-center gap-2 mb-1">
+                          <h3 class="text-[10pt] font-black text-neutral-900 uppercase leading-none">${exp.company}</h3>
+                          <span class="w-1 h-1 bg-neutral-300 rounded-full"></span>
+                          <span class="text-[9pt] font-bold text-brand uppercase tracking-tighter">${getText(exp.position)}</span>
+                        </div>
+                        <p class="leading-snug text-neutral-500 font-medium">
+                          ${getText(exp.description)}
+                        </p>
+                      </div>
+                    </article>
+                  `).join('')}
+                </div>
+              </section>
+
+              <div class="grid grid-cols-2 gap-12 mt-auto">
+                <section class="avoid-break">
+                  <h2 class="font-montserrat text-[9pt] font-black uppercase text-neutral-900 mb-4 border-b border-neutral-200 pb-1">Technical Stack</h2>
+                  <div class="flex flex-wrap gap-1">
+                    ${data.skills.programming_languages.slice(0, 15).map(s => `
+                      <span class="px-2 py-0.5 bg-white border border-neutral-200 rounded text-[7.5pt] font-bold text-neutral-600">${s}</span>
+                    `).join('')}
+                  </div>
+                </section>
+
+                <section class="avoid-break">
+                  <h2 class="font-montserrat text-[9pt] font-black uppercase text-neutral-900 mb-4 border-b border-neutral-200 pb-1">Academic</h2>
+                  <div class="space-y-3">
+                    ${data.education.map(edu => `
+                      <div>
+                        <div class="font-black text-neutral-900 uppercase text-[8pt] leading-tight">${edu.institution}</div>
+                        <div class="text-neutral-400 italic text-[7.5pt] mt-0.5">${getText(edu.area)}</div>
+                      </div>
+                    `).join('')}
+                  </div>
+                </section>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderApex() {
+        const { b, photoSrc } = getCommonData();
+        return `
+          <div class="p-[6mm] flex flex-col h-full overflow-hidden text-[8pt] font-outfit bg-white text-neutral-800">
+            <div class="border-[1px] border-neutral-200 flex-1 flex flex-col p-6 relative">
+              <header class="avoid-break flex justify-between items-start mb-8 border-b border-neutral-100 pb-6">
+                <div class="flex items-start gap-6">
+                  <div class="w-24 h-24 rounded-2xl overflow-hidden grayscale border border-neutral-100">
+                    <img src="${photoSrc}" class="w-full h-full object-cover">
+                  </div>
+                  <div>
+                    <h1 class="text-[34pt] font-black leading-[0.8] tracking-tighter text-neutral-900 uppercase">
+                      ${b.name.split(' ')[0]}<br><span class="text-brand font-light">${b.name.split(' ').slice(1).join(' ')}</span>
+                    </h1>
+                    <div class="mt-4 font-mono text-[9pt] font-medium text-neutral-400 uppercase tracking-widest">// ${getText(b.label)}</div>
+                  </div>
+                </div>
+                <div class="text-right font-mono text-[7.5pt] font-medium space-y-1 text-neutral-400 uppercase">
+                  <div class="flex items-center justify-end gap-2">${b.email} <span class="w-1.5 h-1.5 bg-brand"></span></div>
+                  <div class="flex items-center justify-end gap-2">${b.phone} <span class="w-1.5 h-1.5 bg-brand"></span></div>
+                  <div class="flex items-center justify-end gap-2">${b.location.city} <span class="w-1.5 h-1.5 bg-brand"></span></div>
                 </div>
               </header>
 
-              <div class="grid grid-cols-12 gap-12 flex-1 relative z-10">
-                <div class="col-span-8 space-y-12">
+              <div class="grid grid-cols-12 gap-10 flex-1">
+                <div class="col-span-9 space-y-8 pr-10 border-r border-neutral-100">
                   <section class="avoid-break">
-                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-6">Introduction</h2>
-                    <p class="text-[12pt] leading-snug font-medium text-neutral-300">
+                    <div class="font-black uppercase tracking-[0.3em] text-neutral-300 text-[7pt] mb-3">Executive Summary</div>
+                    <p class="text-[9.5pt] leading-tight font-medium text-neutral-600">
                       ${getText(b.summary)}
                     </p>
                   </section>
 
                   <section>
-                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-8">Selected Works</h2>
-                    <div class="space-y-10">
+                    <div class="font-black uppercase tracking-[0.3em] text-neutral-300 text-[7pt] mb-6">Employment History</div>
+                    <div class="space-y-8">
                       ${data.experience.map(exp => `
-                        <article class="avoid-break group">
-                          <div class="flex justify-between items-baseline mb-3">
-                            <h3 class="text-[16pt] font-black uppercase text-white group-hover:text-brand transition-colors">${exp.company}</h3>
-                            <span class="text-[9pt] font-bold text-neutral-600 tabular-nums">${exp.startDate} — ${exp.endDate}</span>
+                        <article class="avoid-break relative">
+                          <div class="flex justify-between items-baseline mb-2">
+                            <h3 class="text-[11pt] font-black text-neutral-900 uppercase">${exp.company}</h3>
+                            <span class="font-mono text-[7pt] font-bold text-neutral-300">${formatDates(exp.startDate, exp.endDate)}</span>
                           </div>
-                          <div class="inline-block px-2 py-0.5 bg-neutral-900 text-neutral-400 text-[8pt] font-bold uppercase mb-4 tracking-widest">${getText(exp.position)}</div>
-                          <p class="text-[10pt] leading-relaxed text-neutral-400">
+                          <div class="text-[9pt] font-bold text-brand uppercase mb-3 tracking-tighter">${getText(exp.position)}</div>
+                          <p class="leading-tight text-neutral-500 font-medium">
                             ${getText(exp.description)}
                           </p>
                         </article>
@@ -1624,35 +1823,35 @@
                   </section>
                 </div>
 
-                <div class="col-span-4 space-y-12">
+                <div class="col-span-3 space-y-8">
                   <section class="avoid-break">
-                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-6">Expertise</h2>
-                    <div class="flex flex-col gap-2">
-                      ${data.skills.programming_languages.slice(0, 10).map(s => `
-                        <div class="flex items-center gap-3">
-                          <div class="w-2 h-2 bg-brand"></div>
-                          <span class="text-[10pt] font-bold text-white uppercase">${s}</span>
+                    <div class="font-black uppercase tracking-[0.3em] text-neutral-300 text-[7pt] mb-4">Competencies</div>
+                    <div class="flex flex-col gap-1.5">
+                      ${data.skills.programming_languages.slice(0, 12).map(s => `
+                        <div class="flex items-center gap-2 group">
+                          <div class="w-1 h-3 bg-neutral-100 group-hover:bg-brand transition-colors"></div>
+                          <span class="font-bold text-neutral-600 uppercase text-[7.5pt] tracking-tight">${s}</span>
                         </div>
                       `).join('')}
                     </div>
                   </section>
 
                   <section class="avoid-break">
-                    <h2 class="font-archivo text-[10pt] font-bold text-brand uppercase tracking-[0.5em] mb-6">Academic</h2>
-                    <div class="space-y-6">
+                    <div class="font-black uppercase tracking-[0.3em] text-neutral-300 text-[7pt] mb-4">Education</div>
+                    <div class="space-y-5">
                       ${data.education.map(edu => `
                         <div>
-                          <div class="text-[11pt] font-black text-white uppercase leading-tight">${edu.institution}</div>
-                          <div class="text-[9pt] font-bold text-neutral-500 mt-1 italic">${getText(edu.area)}</div>
-                          <div class="text-[8pt] font-bold text-neutral-700 mt-2 tracking-widest">${edu.startDate}</div>
+                          <div class="font-black text-neutral-900 uppercase leading-tight text-[8pt]">${edu.institution}</div>
+                          <div class="text-neutral-400 font-medium mt-1 text-[7.5pt]">${getText(edu.area)}</div>
+                          <div class="font-mono text-[7pt] text-neutral-300 mt-1 uppercase font-bold">${edu.startDate}</div>
                         </div>
                       `).join('')}
                     </div>
                   </section>
 
-                  <div class="mt-auto pt-12 text-right">
-                    <div class="text-[40pt] font-black leading-none text-neutral-900 uppercase italic select-none">
-                      Impact<br>Driven
+                  <div class="mt-auto pt-10">
+                    <div class="text-[18pt] font-black leading-none opacity-5 uppercase italic text-neutral-900">
+                      Top Tier<br>Candidate
                     </div>
                   </div>
                 </div>
