@@ -304,6 +304,13 @@
         </div>
         <div class="h-px bg-neutral-200"></div>
         <div class="flex flex-col gap-1">
+          <span class="text-[8pt] font-bold text-neutral-500 uppercase tracking-wider">Content</span>
+          <select id="content-selector" onchange="setContent(this.value)" class="text-[9pt] p-1 border rounded w-full bg-neutral-100 focus:outline-none focus:ring-1 focus:ring-brand">
+            <!-- Options populated dynamically -->
+          </select>
+        </div>
+        <div class="h-px bg-neutral-200"></div>
+        <div class="flex flex-col gap-1">
           <span class="text-[8pt] font-bold text-neutral-500 uppercase tracking-wider">Template</span>
           <div class="grid grid-cols-3 gap-1">
             <button onclick="setTemplate('canva')" id="btn-tpl-canva" class="px-2 py-1 rounded bg-brand text-white font-bold text-[8pt]">Canva</button>
@@ -341,7 +348,7 @@
     </main>
 
     <!-- Embedded Data (Auto-synced from cv.json) -->
-    <script id="cv-data" type="application/json">
+    <script id="cv-data" type="application/json" data-cv-content="Default (IT)">
 {
   "basics": {
     "name": "Anton van Kimmenade",
@@ -469,11 +476,106 @@
 }
     </script>
 
+    <!-- Example Content Template (System Demonstration) -->
+    <script id="cv-data-flexi" type="application/json" data-cv-content="Flexi-job (Example)">
+{
+  "basics": {
+    "name": "Anton van Kimmenade",
+    "label": {
+      "en": "Service Professional",
+      "nl": "HORECA MEDEWERKER"
+    },
+    "email": "toonvankimmenade@gmail.com",
+    "phone": "+32489693234",
+    "url": "https://www.toonvank.com",
+    "summary": {
+      "en": "Enthusiastic and hardworking professional looking for a flexi-job. Experienced in customer service and quick to adapt to new environments.",
+      "nl": "Enthousiaste en hardwerkende professional op zoek naar een flexi-job. Ervaren in klantenservice en past zich snel aan nieuwe omgevingen aan."
+    },
+    "location": {
+      "city": "Maasmechelen",
+      "countryCode": "BE"
+    }
+  },
+  "experience": [
+    {
+      "company": "Local Café",
+      "position": { "en": "Waiter", "nl": "Kelner" },
+      "startDate": "2023",
+      "endDate": "Present",
+      "description": {
+        "en": "Providing excellent service to customers in a fast-paced environment.",
+        "nl": "Uitstekende service bieden aan klanten in een drukke omgeving."
+      }
+    }
+  ],
+  "education": [],
+  "skills": {
+    "languages": [
+      { "language": { "en": "Dutch, English", "nl": "Nederlands, Engels" } }
+    ],
+    "programming_languages": [],
+    "frameworks": [],
+    "databases": [],
+    "tools": ["Customer Service", "Teamwork"]
+  },
+  "references": []
+}
+    </script>
+
+
     <!-- Rendering Logic -->
     <script>
       let currentLang = localStorage.getItem('cv-lang') || 'nl';
       let currentTemplate = localStorage.getItem('cv-template') || 'canva';
+      let currentContent = localStorage.getItem('cv-content-key') || 'default';
+      let contentTemplates = {};
       let data = {};
+
+      function discoverContentTemplates() {
+        contentTemplates = {};
+        const scripts = document.querySelectorAll('script[type="application/json"]');
+        scripts.forEach(script => {
+          const label = script.getAttribute('data-cv-content');
+          if (label) {
+            const key = script.id || label.toLowerCase().replace(/\s+/g, '-');
+            try {
+              contentTemplates[key] = JSON.parse(script.textContent);
+              contentTemplates[key]._label = label;
+            } catch (e) {
+              console.error(`Error parsing content ${key}:`, e);
+            }
+          } else if (script.id === 'cv-data') {
+            // Support legacy ID for the default content
+            try {
+              contentTemplates['default'] = JSON.parse(script.textContent);
+              contentTemplates['default']._label = 'Default';
+            } catch (e) {
+              console.error("Error parsing default content:", e);
+            }
+          }
+        });
+
+        // Ensure we have at least one content set
+        if (Object.keys(contentTemplates).length === 0) {
+           contentTemplates['default'] = { basics: { name: "No Data Found" }, experience: [], education: [], skills: { languages: [] } };
+           contentTemplates['default']._label = 'No Data';
+        }
+        
+        // Ensure currentContent is valid
+        if (!contentTemplates[currentContent]) {
+          currentContent = Object.keys(contentTemplates)[0];
+        }
+      }
+
+      function setContent(key) {
+        if (!contentTemplates[key]) return;
+        currentContent = key;
+        localStorage.setItem('cv-content-key', key);
+        data = contentTemplates[key];
+        render();
+        updateUI();
+      }
 
       function getText(obj) {
         if (!obj) return '';
@@ -529,6 +631,20 @@
         // Update language buttons
         document.getElementById('btn-nl').className = currentLang === 'nl' ? 'px-3 py-1 rounded bg-brand text-white font-bold text-[9pt]' : 'px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[9pt]';
         document.getElementById('btn-en').className = currentLang === 'en' ? 'px-3 py-1 rounded bg-brand text-white font-bold text-[9pt]' : 'px-3 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[9pt]';
+
+        // Update content selector
+        const selector = document.getElementById('content-selector');
+        if (selector) {
+          if (selector.options.length === 0) {
+            Object.keys(contentTemplates).forEach(key => {
+              const opt = document.createElement('option');
+              opt.value = key;
+              opt.textContent = contentTemplates[key]._label || key;
+              selector.appendChild(opt);
+            });
+          }
+          selector.value = currentContent;
+        }
 
         // Update template buttons
         const templates = ['canva', 'modern', 'classic', 'executive', 'developer', 'minimalist', 'timeline', 'editorial', 'hacker', 'swiss', 'slate', 'maven', 'apex'];
@@ -1863,7 +1979,8 @@
 
       // Initial load
       document.addEventListener('DOMContentLoaded', () => {
-        data = JSON.parse(document.getElementById('cv-data').textContent);
+        discoverContentTemplates();
+        data = contentTemplates[currentContent];
         loadFonts(currentTemplate);
         render();
         updateUI();
