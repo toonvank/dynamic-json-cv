@@ -12,6 +12,8 @@
 
     <!-- Tailwind CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <!-- PDF Export Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <script>
       tailwind.config = {
         theme: {
@@ -330,11 +332,19 @@
         </div>
       </div>
       <div class="bg-white p-2 rounded shadow-lg flex flex-col gap-2">
-        <input type="text" id="photo-url" placeholder="Paste Photo URL..." class="text-[9pt] p-1 border rounded w-40">
-        <button onclick="updatePhoto()" class="bg-neutral-800 text-white px-2 py-1 rounded text-[9pt] font-bold">Update Photo</button>
+        <span class="text-[8pt] font-bold text-neutral-500 uppercase tracking-wider">Photo URL</span>
+        <input type="text" id="photo-url" placeholder="Paste Photo URL..." class="text-[9pt] p-1 border rounded w-40 focus:outline-none focus:ring-1 focus:ring-brand">
+        <button onclick="updatePhoto()" class="bg-neutral-800 text-white px-2 py-1 rounded text-[9pt] font-bold hover:bg-neutral-700">Update Photo</button>
+      </div>
+      <div class="bg-white p-2 rounded shadow-lg flex flex-col gap-2">
+        <span class="text-[8pt] font-bold text-neutral-500 uppercase tracking-wider">Print Filename</span>
+        <input type="text" id="print-filename" oninput="setFilename(this.value)" placeholder="CV_Anton_van_Kimmenade" class="text-[9pt] p-1 border rounded w-40 focus:outline-none focus:ring-1 focus:ring-brand">
       </div>
       <button onclick="window.print()" class="bg-brand text-white px-4 py-2 rounded shadow-lg font-bold hover:bg-opacity-90">
         🖨️ Print CV
+      </button>
+      <button onclick="exportPDF()" class="bg-emerald-600 text-white px-4 py-2 rounded shadow-lg font-bold hover:bg-emerald-500">
+        📥 Export PDF
       </button>
     </div>
 
@@ -662,6 +672,7 @@
       let currentLang = localStorage.getItem('cv-lang') || 'nl';
       let currentTemplate = localStorage.getItem('cv-template') || 'canva';
       let currentContent = localStorage.getItem('cv-content-key') || 'default';
+      let currentFilename = localStorage.getItem('cv-print-filename') || 'CV_Anton_van_Kimmenade';
       let contentTemplates = {};
       let data = {};
 
@@ -787,6 +798,14 @@
             btn.className = currentTemplate === t ? 'px-2 py-1 rounded bg-brand text-white font-bold text-[8pt]' : 'px-2 py-1 rounded bg-neutral-200 hover:bg-neutral-300 text-[8pt]';
           }
         });
+
+        // Update inputs from storage
+        const photoInput = document.getElementById('photo-url');
+        if (photoInput) photoInput.value = localStorage.getItem('cv-photo-url') || '';
+        
+        const filenameInput = document.getElementById('print-filename');
+        if (filenameInput) filenameInput.value = currentFilename;
+        document.title = currentFilename;
       }
 
       function updatePhoto() {
@@ -795,6 +814,39 @@
           localStorage.setItem('cv-photo-url', url);
           render();
         }
+      }
+
+      function setFilename(name) {
+        currentFilename = name;
+        localStorage.setItem('cv-print-filename', name);
+        document.title = name;
+      }
+
+      function exportPDF() {
+        const element = document.getElementById('cv-content');
+        const opt = {
+          margin: 0,
+          filename: currentFilename + '.pdf',
+          image: { type: 'jpeg', quality: 0.98 },
+          html2canvas: { scale: 2, useCORS: true, letterRendering: true },
+          jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+        };
+
+        // Add a loading state to the button
+        const btn = event.currentTarget;
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '⌛ Generating...';
+        btn.disabled = true;
+
+        html2pdf().set(opt).from(element).save().then(() => {
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        }).catch(err => {
+          console.error('PDF Export Error:', err);
+          alert('Error generating PDF. Check console.');
+          btn.innerHTML = originalText;
+          btn.disabled = false;
+        });
       }
 
       function render() {
