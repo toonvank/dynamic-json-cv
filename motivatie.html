@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motivatiebrief & Analyse - Anton Van Kimmenade</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Lato:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        heading: ["Montserrat", "sans-serif"],
+                        sans: ["Lato", "system-ui", "Segoe UI", "Roboto", "Arial", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+
+    <style>
+        @media print {
+            @page {
+                size: A4;
+                margin: 0;
+            }
+            html, body {
+                margin: 0 !important;
+                padding: 0 !important;
+                background: #fff !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+        }
+
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            padding: 20mm;
+            box-sizing: border-box;
+            background: #fff;
+            color: #333;
+            margin: 0 auto;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                min-height: auto;
+            }
+        }
+
+        .summary-box {
+            background-color: #e8f4f8;
+            border-radius: 5px;
+            padding: 15px;
+            margin: 20px 0;
+        }
+
+        h2 {
+            border-left: 5px solid #3498db;
+            padding-left: 10px;
+        }
+
+        .highlight {
+            font-weight: bold;
+            color: #2c3e50;
+        }
+    </style>
+</head>
+<body class="bg-neutral-100 font-sans text-[11pt] leading-relaxed">
+
+    <div class="no-print fixed top-4 right-4 flex gap-2 z-50">
+        <button onclick="toggleView()" class="bg-blue-600 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-700 transition">
+            Wissel Weergave
+        </button>
+        <button onclick="window.print()" class="bg-gray-800 text-white px-4 py-2 rounded-lg shadow hover:bg-gray-900 transition">
+            Print naar PDF
+        </button>
+    </div>
+
+    <main class="py-10 print:py-0" id="app">
+        <!-- Letter View -->
+        <div id="letter-view" class="page">
+            <header class="mb-12">
+                <div class="flex justify-between items-start">
+                    <div>
+                        <h1 class="font-heading text-2xl font-extrabold" id="sender-name">Anton Van Kimmenade</h1>
+                        <p id="sender-address">Gouden Regenstraat 9, 3630 Maasmechelen</p>
+                        <p id="sender-contact">toonvankimmenade@gmail.com | +32 489 69 32 34</p>
+                    </div>
+                    <div class="text-right italic text-gray-500" id="current-date">
+                        Maasmechelen, [Datum]
+                    </div>
+                </div>
+            </header>
+
+            <section class="mb-8">
+                <div class="font-bold" id="recipient-company">[Bedrijf Naam]</div>
+                <div id="recipient-person">[Contactpersoon]</div>
+                <div id="recipient-address">[Adres indien beschikbaar]</div>
+            </section>
+
+            <section class="mb-8 font-bold">
+                Betreft: Sollicitatie voor de functie van <span id="application-role">[Functie]</span>
+            </section>
+
+            <section id="letter-body" class="space-y-4">
+                <p id="letter-opening">Geachte,</p>
+                <div id="letter-paragraphs" class="space-y-4 text-justify">
+                    <!-- Paragraphs will be injected here -->
+                </div>
+                <p id="letter-closing">Met vriendelijke groet,</p>
+                <div class="mt-8">
+                    <p class="font-bold">Anton Van Kimmenade</p>
+                </div>
+            </section>
+        </div>
+
+        <!-- Analysis View (Hidden by default) -->
+        <div id="analysis-view" class="page hidden">
+            <h1 class="font-heading text-3xl text-slate-800 border-b-2 border-blue-500 pb-2 mb-4">Documentoverzicht: Motivatiebrief</h1>
+            <div class="text-sm text-slate-500 mb-8 italic" id="analysis-subject">
+                Betreft: Analyse van de sollicitatie voor [Bedrijf] door Anton Van Kimmenade.
+            </div>
+
+            <div class="summary-box">
+                <p id="analysis-summary">
+                    Dit document is een <strong>motivatiebrief</strong> geschreven door Anton Van Kimmenade voor een stageplek in de IT-sector bij het bedrijf <strong>[Bedrijf]</strong>.
+                </p>
+            </div>
+
+            <h2 class="text-xl font-bold text-blue-800 mt-6 mb-4">Kernonderdelen van de brief</h2>
+            <ul class="list-disc pl-6 space-y-3" id="analysis-points">
+                <!-- Points will be injected here -->
+            </ul>
+
+            <h2 class="text-xl font-bold text-blue-800 mt-10 mb-4">Structuur</h2>
+            <p>De brief volgt een standaard professionele indeling:</p>
+            <ol class="list-decimal pl-6 mt-2 space-y-1">
+                <li><strong>Aanhef:</strong> Formele begroeting.</li>
+                <li><strong>Inleiding:</strong> Directe vermelding van de intentie om te solliciteren.</li>
+                <li><strong>Middenstuk:</strong> Toelichting op vaardigheden, opleiding en de match met de bedrijfscultuur.</li>
+                <li><strong>Afsluiting:</strong> Verzoek om een gesprek en contactgegevens.</li>
+            </ol>
+
+            <h2 class="text-xl font-bold text-blue-800 mt-10 mb-4">Contactgegevens</h2>
+            <p>De brief wordt afgesloten met de naam van de afzender en contactgegevens: <strong id="analysis-phone">+32 489 69 32 34</strong>.</p>
+        </div>
+    </main>
+
+    <script>
+        let currentView = 'letter';
+
+        function toggleView() {
+            const letter = document.getElementById('letter-view');
+            const analysis = document.getElementById('analysis-view');
+            if (currentView === 'letter') {
+                letter.classList.add('hidden');
+                analysis.classList.remove('hidden');
+                currentView = 'analysis';
+            } else {
+                analysis.classList.add('hidden');
+                letter.classList.remove('hidden');
+                currentView = 'letter';
+            }
+        }
+
+        async function loadData() {
+            try {
+                const cvResponse = await fetch('cv.json');
+                const cvData = await cvResponse.json();
+
+                const appResponse = await fetch('application.json');
+                const appData = await appResponse.json();
+
+                populateUI(cvData, appData);
+            } catch (error) {
+                console.error('Error loading JSON data:', error);
+                alert('Er is een fout opgetreden bij het laden van de gegevens. Zorg ervoor dat de server draait.');
+            }
+        }
+
+        function populateUI(cv, app) {
+            // Shared info
+            const p = cv.persoonlijke_gegevens;
+            document.title = `Motivatiebrief - ${p.naam} - ${app.company}`;
+
+            // Letter View
+            document.getElementById('sender-name').textContent = p.naam;
+            document.getElementById('sender-address').textContent = p.contact.adres;
+            document.getElementById('sender-contact').textContent = `${p.contact.email} | ${p.contact.telefoon}`;
+            
+            const date = app.date ? new Date(app.date).toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' }) : new Date().toLocaleDateString('nl-BE', { day: 'numeric', month: 'long', year: 'numeric' });
+            document.getElementById('current-date').textContent = `Maasmechelen, ${date}`;
+
+            document.getElementById('recipient-company').textContent = app.company;
+            document.getElementById('recipient-person').textContent = app.contact_person || 'De selectieverantwoordelijke';
+            document.getElementById('recipient-address').textContent = app.recipient_address || '';
+            document.getElementById('application-role').textContent = app.role;
+
+            document.getElementById('letter-opening').textContent = app.letter_content.opening;
+            
+            const paragraphsContainer = document.getElementById('letter-paragraphs');
+            paragraphsContainer.innerHTML = '';
+            app.letter_content.paragraphs.forEach(text => {
+                const p = document.createElement('p');
+                p.textContent = text;
+                paragraphsContainer.appendChild(p);
+            });
+            document.getElementById('letter-closing').textContent = app.letter_content.closing;
+
+            // Analysis View
+            document.getElementById('analysis-subject').textContent = app.subject || `Betreft: Analyse van de sollicitatie voor ${app.company} door ${p.naam}.`;
+            document.getElementById('analysis-summary').innerHTML = `Dit document is een <strong>motivatiebrief</strong> geschreven door ${p.naam} voor een ${app.role} bij het bedrijf <strong>${app.company}</strong>.`;
+            
+            const pointsList = document.getElementById('analysis-points');
+            pointsList.innerHTML = '';
+            Object.entries(app.key_points).forEach(([key, value]) => {
+                const li = document.createElement('li');
+                const label = key.charAt(0).toUpperCase() + key.slice(1).replace('_', ' ');
+                li.innerHTML = `<strong>${label}:</strong> ${value}`;
+                pointsList.appendChild(li);
+            });
+            document.getElementById('analysis-phone').textContent = p.contact.telefoon;
+        }
+
+        document.addEventListener('DOMContentLoaded', loadData);
+    </script>
+</body>
+</html>

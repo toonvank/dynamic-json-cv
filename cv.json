@@ -9,7 +9,7 @@
       "website": "www.toonvank.com"
     }
   },
-  "profiel": "Afgestudeerd Full-Stack Developer, volhardend, nieuwsgierig en gedreven om te leren en te groeien. Stageplekken hebben praktijkervaring opgeleverd, waarbij aanpasbaarheid, samenwerking en resultaatgerichtheid ontwikkeld. Geniet van het aanpakken van uitdagingen, het verkennen van ideeën en het combineren van creativiteit met probleemoplossing.",
+  "profiel": "Gedreven Software Developer met een sterke focus op DevOps-principes, automatisering en schaalbaarheid. Ik heb praktijkervaring met het bouwen van CI/CD-pipelines, het beheren van container-infrastructuren (Docker) en het ontwikkelen van robuuste backend-systemen voor high-traffic platformen. Mijn aanpak combineert technische diepgang met een probleemoplossende mentaliteit en de drive om ontwikkelprocessen continu te optimaliseren.",
   "opleiding": [
     {
       "periode": "2021 - 2025",
@@ -73,11 +73,11 @@
     }
   ],
   "skills": [
-    ".NET, Laravel, Symfony",
-    "C#, PHP, JavaScript, Java",
-    "SQL, MySQL, SQLite",
-    "Azure, AWS, Atlassian",
-    "Creative Cloud Stack"
+    "Docker, CI/CD, Linux Admin (Ubuntu/Debian)",
+    "Python, C++, .NET Core, Laravel, Node.js",
+    "C#, PHP, JavaScript/TypeScript, SQL",
+    "Azure, AWS, Atlassian (Jira/Confluence)",
+    "Monitoring & Performance Testing"
   ],
   "talen": {
     "vloeiend": [
